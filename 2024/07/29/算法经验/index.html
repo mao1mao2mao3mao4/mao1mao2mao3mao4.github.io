@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="算法解题经验解题套路：回溯算法：  1，核心条件    几个常规函数的使用string常用1），isalpha（），判断给定内容是不是字母，头文件 cctype.h 2），tolower()，将给定的char字母转化为小写，头文件 cctype.h 3），transform(），对给定范围内的所有内容进行一次给定操作并将结果输出到第三个参数指定的容器中， ​       有四个参数，1,2是范围的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/07/29/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="算法解题经验解题套路：回溯算法：  1，核心条件    几个常规函数的使用string常用1），isalpha（），判断给定内容是不是字母，头文件 cctype.h 2），tolower()，将给定的char字母转化为小写，头文件 cctype.h 3），transform(），对给定范围内的所有内容进行一次给定操作并将结果输出到第三个参数指定的容器中， ​       有四个参数，1,2是范围的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170601.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170609.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170615.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170621.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170623.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170626.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170627.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170638.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170640.png">
+<meta property="og:image" content="http://example.com/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C.assets/image-20240724185655022.png!%5Bimage-20240724185829215%5D(https:/gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170642.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170645.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170647.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170657.png">
+<meta property="og:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170658.png">
+<meta property="og:image" content="c:\Users\LENOVO\AppData\Roaming\Typora\typora-user-images\image-20240718114132322.png">
+<meta property="article:published_time" content="2024-07-29T10:19:11.381Z">
+<meta property="article:modified_time" content="2024-07-26T03:42:01.975Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170601.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-算法经验" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/29/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/" class="article-date">
+  <time class="dt-published" datetime="2024-07-29T10:19:11.381Z" itemprop="datePublished">2024-07-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="算法解题经验"><a href="#算法解题经验" class="headerlink" title="算法解题经验"></a>算法解题经验</h1><h2 id="解题套路："><a href="#解题套路：" class="headerlink" title="解题套路："></a>解题套路：</h2><p>回溯算法：</p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170601.png" alt="image-20240720152129405"></p>
+<h2 id="1，核心条件"><a href="#1，核心条件" class="headerlink" title="1，核心条件"></a>1，核心条件</h2><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170609.png" alt="image-20240717154006594" style="zoom: 67%;" />
+
+<img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170615.png" alt="image-20240717154023009" style="zoom: 67%;" />
+
+<h1 id="几个常规函数的使用"><a href="#几个常规函数的使用" class="headerlink" title="几个常规函数的使用"></a>几个常规函数的使用</h1><h2 id="string常用"><a href="#string常用" class="headerlink" title="string常用"></a>string常用</h2><p>1），isalpha（），判断给定内容是不是字母，头文件 cctype.h</p>
+<p>2），tolower()，将给定的char字母转化为小写，头文件 cctype.h</p>
+<p>3），transform(），对给定范围内的所有内容进行一次给定操作并将结果输出到第三个参数指定的容器中，</p>
+<p>​       有四个参数，1,2是范围的开头和结尾，3是要输出地方，4是指定操作</p>
+<p>4，substr：字符串截取，接受两个参数，起始位置和长度，长度从其实位置开始算起，由string变量本身调用</p>
+<h2 id="数字常用"><a href="#数字常用" class="headerlink" title="数字常用"></a>数字常用</h2><p>1，std::accumulate()，头文件<numeric>：累加求和，同样，std：：reduce是在C++17后新加入的累计求和方法</p>
+<p>以下代码示例就是来求vector范围内的和，</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> s = <span class="built_in">reduce</span>(possible.<span class="built_in">begin</span>(), possible.<span class="built_in">end</span>(), <span class="number">0</span>) * <span class="number">2</span> - n;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p><strong>输入迭代器</strong>（<code>first</code>, <code>last</code>）：</p>
+<ul>
+<li><code>first</code>：指向要访问的序列（如容器）的第一个元素的迭代器。</li>
+<li><code>last</code>：指向要访问的序列的“超过最后一个元素”的位置的迭代器（即序列末尾的下一个位置）。</li>
+</ul>
+<p>这两个迭代器定义了要操作的元素范围。</p>
+</li>
+<li><p><strong>初始值</strong>（<code>init</code>）：</p>
+<ul>
+<li>这是累积操作的初始值。在每次迭代中，这个值都会与序列中的元素进行某种操作（通常是加法，但也可以是其他可重载的操作）。</li>
+</ul>
+</li>
+<li><p><strong>二元操作</strong>（可选，默认为<code>std::plus&lt;&gt;</code>）：</p>
+<ul>
+<li>这是一个二元函数对象（或者是一个可以隐式转换为函数对象的类型），它接受两个参数（通常是当前累积值和序列中的下一个元素），并返回它们的某种组合（通常是它们的和，但也可以是其他任何可定义的操作结果）。</li>
+<li>如果不提供此参数，则默认使用<code>std::plus&lt;&gt;</code>，即执行加法操作。</li>
+</ul>
+</li>
+<li><p><strong>执行策略</strong>（可选，默认为<code>std::execution::sequenced_policy</code>）：</p>
+<ul>
+<li>这是一个执行策略，它定义了算法的执行方式。C++17引入了三种执行策略：<code>std::execution::sequenced_policy</code>（顺序执行）、<code>std::execution::parallel_policy</code>（并行执行）和<code>std::execution::parallel_unsequenced_policy</code>（并行且向量化执行，如果可能）。</li>
+<li>执行策略允许算法以不同的方式执行，以利用现代多核处理器的并行计算能力。但是，请注意，并行算法的正确使用需要额外的注意，以确保算法的正确性和效率。</li>
+</ul>
+</li>
+</ol>
+<h2 id="numeric头文件"><a href="#numeric头文件" class="headerlink" title="numeric头文件"></a>numeric头文件</h2><p>C++的<code>&lt;numeric&gt;</code>头文件中包含了一系列用于操作数值序列（或可通过修改参数类型适用于非数值序列）的函数。这些函数提供了基础的数值算法，便于对如<code>vector&lt;&gt;</code>、<code>list&lt;&gt;</code>等容器进行数值计算。以下是<code>&lt;numeric&gt;</code>头文件中常用的函数及其简要说明：</p>
+<ol>
+<li><code>std::accumulate</code><ul>
+<li>功能：计算给定范围内元素的累积值。可以通过修改操作符来计算累乘积、累减、累除或其他自定义累计结果。</li>
+<li>模板参数：<code>InputIterator</code>（输入迭代器类型），<code>T</code>（初始值类型），<code>BinaryOperation</code>（可选，二元操作类型）。</li>
+<li>示例用法：计算一个<code>vector&lt;int&gt;</code>中所有元素的和。</li>
+</ul>
+</li>
+<li><code>std::adjacent_difference</code><ul>
+<li>功能：计算给定范围内相邻元素之间的差值（或自定义操作的结果），并将结果写入到输出序列中。</li>
+<li>模板参数：<code>InputIterator</code>（输入迭代器类型），<code>OutputIterator</code>（输出迭代器类型），<code>BinaryOperation</code>（可选，二元操作类型）。</li>
+<li>示例用法：计算一个整数数组中相邻元素之间的差值。</li>
+</ul>
+</li>
+<li><code>std::inner_product</code><ul>
+<li>功能：计算两个序列对应元素的内积，即对应元素相乘后的和（或自定义操作的结果）。</li>
+<li>模板参数：<code>InputIterator1</code>、<code>InputIterator2</code>（两个输入迭代器类型），<code>T</code>（初始值类型），<code>BinaryOperation1</code>、<code>BinaryOperation2</code>（可选，两个二元操作类型）。</li>
+<li>示例用法：计算两个<code>vector&lt;int&gt;</code>对应元素相乘后的和。</li>
+</ul>
+</li>
+<li><code>std::partial_sum</code><ul>
+<li>功能：计算给定范围内元素的部分和（或自定义操作的结果），并将结果写入到输出序列中。</li>
+<li>模板参数：<code>InputIterator</code>（输入迭代器类型），<code>OutputIterator</code>（输出迭代器类型），<code>BinaryOperation</code>（可选，二元操作类型）。</li>
+<li>示例用法：计算一个整数数组中每个位置之前所有元素的和。</li>
+</ul>
+</li>
+<li><code>std::iota</code><ul>
+<li>功能：生成一个范围内的连续整数序列，并将它们赋值给输出序列中的元素。</li>
+<li>模板参数：<code>OutputIterator</code>（输出迭代器类型），<code>T</code>（整数类型）。</li>
+<li>示例用法：初始化一个<code>vector&lt;int&gt;</code>，使其包含从0开始的连续整数。</li>
+</ul>
+</li>
+<li>C++17新增函数<ul>
+<li>**<code>std::gcd</code>**：计算两个整数的最大公约数。</li>
+<li>**<code>std::lcm</code>**：计算两个整数的最小公倍数。</li>
+<li>**<code>std::midpoint</code>**：计算两个数值的中点，避免溢出</li>
+</ul>
+</li>
+</ol>
+<h2 id="algorithm："><a href="#algorithm：" class="headerlink" title="algorithm："></a>algorithm：</h2><p>next_permutation：获取给定区间内容的下一个排列范方式，直到遍历完成所有的排列组合后false，对string也同样适用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">next_permutation</span>(from.<span class="built_in">begin</span>(), from.<span class="built_in">end</span>())</span><br></pre></td></tr></table></figure>
+
+<p>手撕全排序算法，想起见test工程下的BackTracking专栏</p>
+<h1 id="算法套路："><a href="#算法套路：" class="headerlink" title="算法套路："></a>算法套路：</h1><p>创建一个长度26的int类型的数组，保存是对应的ASCII编码，在使用前需要将字母类型- ‘a’，来获取ASCII码</p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170621.png" alt="image-20240713165422734"></p>
+<p>具体手撕可见</p>
+<p>4，std::ranges::sort()：C++20后新加入的排序，对于原有的sort排序，二者都可以对嵌套数组进行排序操作，对比元素是每个数组的0号索引位置</p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170623.png" alt="image-20240718105454408"></p>
+<h3 id="典型题目："><a href="#典型题目：" class="headerlink" title="典型题目："></a>典型题目：</h3><p>leetcode 3 无重复字符的最长子串</p>
+<img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170626.png" alt="image-20240714182233599" style="zoom: 50%;" />
+
+<img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170627.png" alt="image-20240714182315119" style="zoom:50%;" />
+
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">		<span class="type">int</span> size = s.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">if</span> (size == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (size == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		std::unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; m; <span class="comment">//key是位置上的值，value是index</span></span><br><span class="line">		<span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="type">int</span> flag = <span class="number">0</span>;</span><br><span class="line">		<span class="type">int</span> resFalg = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">		<span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> tempStr = s[i];</span><br><span class="line">			<span class="keyword">if</span> (m.<span class="built_in">find</span>(tempStr) != m.<span class="built_in">end</span>())</span><br><span class="line">			&#123;</span><br><span class="line">				resFalg = resFalg &gt; flag ? resFalg : flag;</span><br><span class="line">				flag = <span class="number">1</span>;</span><br><span class="line">				<span class="type">int</span> value = i - m[tempStr];<span class="comment">//与题目进行适配</span></span><br><span class="line">				res = res &gt; value ? res : value;</span><br><span class="line">				<span class="comment">//更新这个值的位置</span></span><br><span class="line">				m[tempStr] = i;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				m[tempStr] = i;</span><br><span class="line">				++flag;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"> </span><br><span class="line">		resFalg = resFalg &lt; flag ? flag : resFalg;</span><br><span class="line">		res = res &gt;= resFalg ? res : resFalg;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上演示的是错误示范，在使用flag标记中，考虑到了在返回结果的时候没有找到重复元素，但是没有考虑到查找起始点位，也就是俗称的滑动窗口，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(std::string s)</span> </span>&#123;  </span><br><span class="line">      <span class="type">int</span> size = s.<span class="built_in">size</span>();  </span><br><span class="line">      <span class="keyword">if</span> (size == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">      <span class="keyword">if</span> (size == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;  </span><br><span class="line"></span><br><span class="line">      std::unordered_map&lt;<span class="type">char</span>, <span class="type">int</span>&gt; m; <span class="comment">// key是字符，value是字符最后出现的位置  </span></span><br><span class="line">      <span class="type">int</span> maxLength = <span class="number">0</span>;  </span><br><span class="line">      <span class="type">int</span> start = <span class="number">0</span>; <span class="comment">// 最长子串的起始位置  </span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;  </span><br><span class="line">          <span class="keyword">if</span> (m.<span class="built_in">find</span>(s[i]) != m.<span class="built_in">end</span>() &amp;&amp; m[s[i]] &gt;= start) &#123;  </span><br><span class="line">              <span class="comment">// 如果当前字符在之前的子串中出现过，并且位置在当前子串范围内  </span></span><br><span class="line">              <span class="comment">// 更新起始位置为当前字符上一次出现位置的下一个位置  </span></span><br><span class="line">              start = m[s[i]] + <span class="number">1</span>;  </span><br><span class="line">          &#125;  </span><br><span class="line">          <span class="comment">// 更新当前字符的最后出现位置  </span></span><br><span class="line">          m[s[i]] = i;  </span><br><span class="line">          <span class="comment">// 更新最长子串的长度  </span></span><br><span class="line">          maxLength = std::<span class="built_in">max</span>(maxLength, i - start + <span class="number">1</span>);  </span><br><span class="line">      &#125;  </span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> maxLength;  </span><br><span class="line">  &#125;  </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2，二维数组寻找各行各列最高值"><a href="#2，二维数组寻找各行各列最高值" class="headerlink" title="2，二维数组寻找各行各列最高值"></a>2，二维数组寻找各行各列最高值</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 找出每行和每列的最大值  </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; size; ++j) &#123;</span><br><span class="line">			rowMax[i] = std::<span class="built_in">max</span>(rowMax[i], grid[i][j]);</span><br><span class="line">			colMax[j] = std::<span class="built_in">max</span>(colMax[j], grid[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="回溯："><a href="#回溯：" class="headerlink" title="回溯："></a>回溯：</h3><p>1，求子集和分割的解法很像：</p>
+<p>分割</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">          <span class="keyword">if</span> (index == n)</span><br><span class="line">&#123;</span><br><span class="line">	res.<span class="built_in">emplace_back</span>(path);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = index; i &lt; n; ++i)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isPalindrome</span>(s, index, i))</span><br><span class="line">	&#123;</span><br><span class="line">		path.<span class="built_in">emplace_back</span>(s.<span class="built_in">substr</span>(index, i - index + <span class="number">1</span>));</span><br><span class="line">		<span class="built_in">dfs</span>(i + <span class="number">1</span>);</span><br><span class="line">		path.<span class="built_in">pop_back</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子集：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">         res.<span class="built_in">emplace_back</span>(path);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = index; i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line">	path.<span class="built_in">emplace_back</span>(nums[i]);</span><br><span class="line">	<span class="built_in">dfs</span>(i + <span class="number">1</span>);</span><br><span class="line">	path.<span class="built_in">pop_back</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="N皇后问题："><a href="#N皇后问题：" class="headerlink" title="N皇后问题："></a>N皇后问题：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;string&gt;&gt; BackTracking::<span class="built_in">solveNQueens</span>(<span class="type">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">	vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">col</span><span class="params">(n)</span>, <span class="title">on_path</span><span class="params">(n)</span>, <span class="title">diag1</span><span class="params">(n * <span class="number">2</span> - <span class="number">1</span>)</span>, <span class="title">diag2</span><span class="params">(n * <span class="number">2</span> - <span class="number">1</span>)</span></span>;</span><br><span class="line">	function&lt;<span class="type">void</span>(<span class="type">int</span>)&gt; dfs = [&amp;](<span class="type">int</span> r) &#123;</span><br><span class="line">		<span class="keyword">if</span> (r == n) &#123;</span><br><span class="line">			vector&lt;string&gt; <span class="built_in">board</span>(n);</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">				board[i] = <span class="built_in">string</span>(col[i], <span class="string">&#x27;.&#x27;</span>) + <span class="string">&#x27;Q&#x27;</span> + <span class="built_in">string</span>(n - <span class="number">1</span> - col[i], <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			ans.<span class="built_in">emplace_back</span>(board);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> c = <span class="number">0</span>; c &lt; n; c++) &#123;</span><br><span class="line">			<span class="type">int</span> rc = r - c + n - <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (!on_path[c] &amp;&amp; !diag1[r + c] &amp;&amp; !diag2[rc]) &#123;</span><br><span class="line">				col[r] = c;</span><br><span class="line">				on_path[c] = diag1[r + c] = diag2[rc] = <span class="literal">true</span>;</span><br><span class="line">				<span class="built_in">dfs</span>(r + <span class="number">1</span>);</span><br><span class="line">				on_path[c] = diag1[r + c] = diag2[rc] = <span class="literal">false</span>; <span class="comment">// 恢复现场</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>n皇后操作其实并不难，只是后来加进去的的皇后棋都会被之前加入的棋子约束，一开始很容易想到在保存使用数组按照点的形式保存下来，但是这之后每次筛查点的时候都需要遍历之前保存的棋子，时间复杂度很高，以上代码给出一种新的方式。</p>
+<h3 id="动态规划："><a href="#动态规划：" class="headerlink" title="动态规划："></a>动态规划：</h3><p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170638.png" alt="image-20240724152332341"></p>
+<p>动态规划背包问题常见变形</p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170640.png" alt="image-20240724153617434"></p>
+<p>完全背包优化到最后的结果：</p>
+<p><img src="/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C.assets/image-20240724185655022.png!%5Bimage-20240724185829215%5D(https:/gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170642.png" alt="image-20240724185655022"></p>
+<p>如上图所示：基本处理逻辑仍然是遵循不选和选这一基本操作，只是在memo的上对不需要的数据进行了覆盖处理，</p>
+<p>对0索引位置上的数据初始化一个0是为了让当前硬币x就可以组成目前需要的值</p>
+<h1 id="VS快捷操作经验："><a href="#VS快捷操作经验：" class="headerlink" title="VS快捷操作经验："></a>VS快捷操作经验：</h1><p>ctrl + K + O：在头文件和cpp中快速切换</p>
+<p>xml注释换行：<para> </para> 将要新一行的内容包裹起来</p>
+<h1 id="STL容器操作："><a href="#STL容器操作：" class="headerlink" title="STL容器操作："></a>STL容器操作：</h1><h2 id="常规操作："><a href="#常规操作：" class="headerlink" title="常规操作："></a>常规操作：</h2><p>1，back()：返回容器中最后一个元素，</p>
+<p>2，优先级队列：</p>
+<p>以下内容是在优先级队列中使用自定义变量并设置自定义比较标准的示例</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> myCompare = [](ListNode* node1, ListNode* node2) &#123;</span><br><span class="line">	<span class="keyword">return</span> node1-&gt;value &lt; node2-&gt;value;</span><br><span class="line">	&#125;;</span><br><span class="line">std::priority_queue&lt;ListNode*,std::vector&lt;ListNode*&gt;,<span class="keyword">decltype</span>(myCompare)&gt; <span class="built_in">heapSortO</span>(myCompare);</span><br></pre></td></tr></table></figure>
+
+<p>以下是优先级队列使用lamba表达式快速构建自定义比较类型的例子，注意，使用greater（greater自带的比较器）是小根堆，即 return i&gt;j；i在参数中是前者</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue &lt; pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;, vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;, <span class="keyword">decltype</span>([](pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; i, pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; j) &#123;<span class="keyword">return</span> i.first &gt; j.first; &#125;) &gt; pq;</span><br></pre></td></tr></table></figure>
+
+<h2 id="用法示例"><a href="#用法示例" class="headerlink" title="用法示例"></a>用法示例</h2><h3 id="清空内存"><a href="#清空内存" class="headerlink" title="清空内存"></a>清空内存</h3><p>1，在STL中某些容器不提供清空操作的前提下，快速清空指定内存，例如清空栈</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::<span class="built_in">stack</span>&lt;<span class="type">int</span>&gt;().<span class="built_in">swap</span>(sta); <span class="comment">//清空栈</span></span><br></pre></td></tr></table></figure>
+
+<p>具体的底层内存操作过程如下：</p>
+<ol>
+<li>创建了一个空的临时<code>std::stack&lt;int&gt;</code>对象。</li>
+<li>这个临时对象与<code>sta</code>进行了<code>swap</code>操作，导致<code>sta</code>的内容被清空，而临时对象现在包含了<code>sta</code>原来的内容。</li>
+<li>临时对象在表达式结束时被销毁。销毁过程中，如果临时对象内部有动态分配的内存（例如，<code>std::deque</code>可能会为其元素分配堆内存），则这些内存会被回收（通过调用析构函数和可能的内存释放操作）。但是，请注意，这里的“回收”并不意味着内存被立即返回给操作系统；它可能只是被标记为可重用，以便后续的堆分配可以重用这些内存块。</li>
+</ol>
+<h3 id="删除内容："><a href="#删除内容：" class="headerlink" title="删除内容："></a>删除内容：</h3><p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170645.png" alt="image-20240720172221617"></p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170647.png" alt="image-20240720172907972"></p>
+<p>通过以上内容可以知道：容器在保存node指针的时候类似于在函数传递过程中的形参，构造了一个新的指针并拷贝了原始指针，</p>
+<p>因为node的数据是保存在堆上的，所以现在相当于在栈和堆上同时拥有一份指向保存在堆上的node地址的指针，对node值的修改可以做到同步，删除原始指针或者map的都不会对最终的结果产生影响。</p>
+<p>所以建议在创建node的时候还是new一个，因为容器最终是要释放掉的</p>
+<h2 id="2，特殊操作"><a href="#2，特殊操作" class="headerlink" title="2，特殊操作"></a>2，特殊操作</h2><h3 id="判断内容相等"><a href="#判断内容相等" class="headerlink" title="&#x3D;&#x3D;判断内容相等"></a>&#x3D;&#x3D;判断内容相等</h3><p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170657.png" alt="image-20240716154802788"></p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20240725170658.png" alt="image-20240716155146719"></p>
+<h1 id="不熟悉但是重要的特性："><a href="#不熟悉但是重要的特性：" class="headerlink" title="不熟悉但是重要的特性："></a>不熟悉但是重要的特性：</h1><p>lamba表达式：</p>
+<p>auto :自动变量标签 </p>
+<p>reverse定义变量名</p>
+<p>&amp;，&#x3D;：在中括号内使用这两个参数，编辑器自动捕获需要的内容，捕获的方式分别是引用捕获和值捕获</p>
+<p>值捕获：在lamba表达式被创建的时候就完成值的复制，之后对值的修改无影响</p>
+<p>引用捕获：顾名思义，和方法的引用传递差不多，但是主要注意调用的时候捕获的值的存在与否之类的问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="type">void</span> <span class="title">rotate</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> reverse = [&amp;](<span class="type">int</span> i, <span class="type">int</span> j) &#123;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">                <span class="built_in">swap</span>(nums[i++], nums[j--]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">    k %= n; <span class="comment">// 轮转 k 次等于轮转 k%n 次</span></span><br><span class="line">    <span class="built_in">reverse</span>(<span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">reverse</span>(<span class="number">0</span>, k - <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">reverse</span>(k, n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\LENOVO\AppData\Roaming\Typora\typora-user-images\image-20240718114132322.png" alt="image-20240718114132322"></p>
+<p>自我调用的两种形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> dfs = [&amp;](<span class="keyword">auto</span>&amp;&amp; dfs, <span class="type">int</span> i) -&gt; <span class="type">void</span> &#123;</span><br><span class="line">	ans.<span class="built_in">emplace_back</span>(path);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; n; ++j) &#123; <span class="comment">// 枚举选择的数字</span></span><br><span class="line">		path.<span class="built_in">push_back</span>(nums[j]);</span><br><span class="line">		<span class="built_in">dfs</span>(dfs, j + <span class="number">1</span>);</span><br><span class="line">		path.<span class="built_in">pop_back</span>(); <span class="comment">// 恢复现场</span></span><br><span class="line">	&#125;</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function&lt;<span class="type">void</span>(<span class="type">int</span>)&gt; dfs = [&amp;](<span class="type">int</span> index)</span><br><span class="line">	&#123;</span><br><span class="line">		res.<span class="built_in">emplace_back</span>(path);</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = index; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			path.<span class="built_in">emplace_back</span>(nums[i]);</span><br><span class="line">			<span class="built_in">dfs</span>(i<span class="number">+1</span>);</span><br><span class="line">			path.<span class="built_in">pop_back</span>();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>lamba在使用auto这种不完成的类型进行自我调用的时候需要使用第一种形式，第二种就是完整的调用流程，头文件<functional></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/29/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/" data-id="clz6u8sd90000f4i3gaivbjli" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/07/29/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/29/%E7%AE%97%E6%B3%95%E7%BB%8F%E9%AA%8C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/29/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
