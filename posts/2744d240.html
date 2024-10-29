@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta name="referrer" content="no-referrer"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Unity —— 渲染知识入门 | mao的博客</title><meta name="author" content="mao"><meta name="copyright" content="mao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="图形接口Opengl和DirectX UnityShader所使用的是CG语言，CG语言在OpenGl和DirectX之上 渲染流水普遍的渲染管线的流程： 下图是基本描述      应用阶段：1.把数据加载到显存中2，设置渲染状态3，调用DrawCall 把数据加载到内存中做的事情数据会从硬盘到内存再到显存，一般加载到显存中的数据都会被从内存中移除 设置渲染状态做的事情这些状态定义了场景中的网格是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity —— 渲染知识入门">
+<meta property="og:url" content="https://mao1mao2mao3mao4.github.io/posts/2744d240.html">
+<meta property="og:site_name" content="mao的博客">
+<meta property="og:description" content="图形接口Opengl和DirectX UnityShader所使用的是CG语言，CG语言在OpenGl和DirectX之上 渲染流水普遍的渲染管线的流程： 下图是基本描述      应用阶段：1.把数据加载到显存中2，设置渲染状态3，调用DrawCall 把数据加载到内存中做的事情数据会从硬盘到内存再到显存，一般加载到显存中的数据都会被从内存中移除 设置渲染状态做的事情这些状态定义了场景中的网格是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mao1mao2mao3mao4.github.io/img/%E5%A4%B4%E5%83%8F.jpg">
+<meta property="article:published_time" content="2024-10-29T13:21:03.225Z">
+<meta property="article:modified_time" content="2024-10-29T13:26:41.717Z">
+<meta property="article:author" content="mao">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="渲染">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mao1mao2mao3mao4.github.io/img/%E5%A4%B4%E5%83%8F.jpg"><link rel="shortcut icon" href="/img/%E5%8E%9F%E7%A5%9E%E7%81%AB.png"><link rel="canonical" href="https://mao1mao2mao3mao4.github.io/posts/2744d240.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Unity —— 渲染知识入门',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-29 21:26:41'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/windows.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="mao的博客"><img class="site-icon" src="/img/%E5%8E%9F%E7%A5%9E%E7%81%AB.png"/><span class="site-name">mao的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Unity —— 渲染知识入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-29T13:21:03.225Z" title="发表于 2024-10-29 21:21:03">2024-10-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-29T13:26:41.717Z" title="更新于 2024-10-29 21:26:41">2024-10-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity/">Unity</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Unity —— 渲染知识入门"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="图形接口"><a href="#图形接口" class="headerlink" title="图形接口"></a>图形接口</h1><p>Opengl和DirectX</p>
+<p>UnityShader所使用的是CG语言，CG语言在OpenGl和DirectX之上</p>
+<h1 id="渲染流水"><a href="#渲染流水" class="headerlink" title="渲染流水"></a>渲染流水</h1><p>普遍的渲染管线的流程：</p>
+<p>下图是基本描述</p>
+<img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241029212116.png" alt="image-20241029143955055" style="zoom:67%;" />
+
+
+
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241029212118.png" alt="image-20241029161109518"></p>
+<h2 id="应用阶段："><a href="#应用阶段：" class="headerlink" title="应用阶段："></a>应用阶段：</h2><p>1.把数据加载到显存中<br>2，设置渲染状态<br>3，调用DrawCall</p>
+<h3 id="把数据加载到内存中做的事情"><a href="#把数据加载到内存中做的事情" class="headerlink" title="把数据加载到内存中做的事情"></a>把数据加载到内存中做的事情</h3><p>数据会从硬盘到内存再到显存，一般加载到显存中的数据都会被从内存中移除</p>
+<h3 id="设置渲染状态做的事情"><a href="#设置渲染状态做的事情" class="headerlink" title="设置渲染状态做的事情"></a>设置渲染状态做的事情</h3><p>这些状态定义了场景中的网格是如何被渲染的，例如，使用哪个定点着色器，片元着色器，光照，材质等</p>
+<h3 id="调用DrawCall"><a href="#调用DrawCall" class="headerlink" title="调用DrawCall"></a>调用DrawCall</h3><p>Drawcall是一个命令，CPU发起，GPU接收，不包含任何材质信息，仅仅指向需要被渲染的图源列表<br>（Unity中存在的DrawCall优化，GPUInstance，这里仅仅是发音比较像，剩余的需要自己去查找）</p>
+<h2 id="几何阶段和光栅化阶段"><a href="#几何阶段和光栅化阶段" class="headerlink" title="几何阶段和光栅化阶段"></a>几何阶段和光栅化阶段</h2><p>两个阶段能被开发者使用代码控制的不多，具体可见ppt中对应的内容</p>
+<h3 id="几何阶段"><a href="#几何阶段" class="headerlink" title="几何阶段"></a>几何阶段</h3><p>定点着色器，曲面细分着色器，几何着色器，裁剪，屏幕映射</p>
+<h4 id="顶点着色器"><a href="#顶点着色器" class="headerlink" title="顶点着色器"></a>顶点着色器</h4><p>处理单位是定点，每个定点都会调用一次定点着色器</p>
+<h4 id="空间转换"><a href="#空间转换" class="headerlink" title="空间转换"></a>空间转换</h4><p>模型空间-》齐次裁剪空间-》计算顶点颜色<br>o.vertex &#x3D; mul(UNITY_MVP，v.vertex); &#x2F;&#x2F;Unity5.x<br>o.vertex &#x3D; UnityObjectToClipPos(v.vertex); &#x2F;&#x2F;Unity2017 及其以上</p>
+<h4 id="裁剪"><a href="#裁剪" class="headerlink" title="裁剪"></a>裁剪</h4><p>一个图元与摄像机的关系有三种，内，外，部分内</p>
+<p>屏幕映射<br>任务是将裁剪后的齐次坐标（HDC）转化到屏幕坐标系，屏幕坐标系是一个二维坐标系<br>（OpenGl左下角是零点，DX左上角是零点）</p>
+<h3 id="光栅化阶段"><a href="#光栅化阶段" class="headerlink" title="光栅化阶段"></a>光栅化阶段</h3><h4 id="主要操作"><a href="#主要操作" class="headerlink" title="主要操作"></a>主要操作</h4><p>三角形设置，三角形遍历，片元着色器，逐片元操作 </p>
+<h4 id="三角形设置"><a href="#三角形设置" class="headerlink" title="三角形设置"></a>三角形设置</h4><p>这个阶段会计算光栅化一个三角网格所需要的信息。上一个阶段输出的都是三角网格的顶点，即我们得到的是三角网格每条边的两个端点。如果要得到正规三角网格对像素的覆盖情况，就必须计算每条边上的像素坐标。为了能够计算边界像素的坐标信息，就需要得到三角形边界的表示方式。</p>
+<h4 id="三角形遍历"><a href="#三角形遍历" class="headerlink" title="三角形遍历"></a>三角形遍历</h4><p>​    <strong>三角形遍历</strong> 阶段将会检查每个像素是否被一个三角网格所覆盖。如果被覆盖的情况下，就会产生一个<strong>片元</strong>。而这样一个找到那些像素被三角网格覆盖的过程就叫做三角形遍历，也被称作<strong>扫描变换</strong>。</p>
+<p>​    三角形遍历阶段会根据上一个阶段的计算结果来判断一个三角网格覆盖了哪些像素，并使用三角网格3个顶点的顶点信息对整个覆盖区域的像素进行插值。</p>
+<h4 id="片元着色器"><a href="#片元着色器" class="headerlink" title="片元着色器"></a>片元着色器</h4><p><strong>片元着色器</strong>的输入是上一个阶段对顶点信息插值得到的结果，具体来说是根据那些从顶点着色器中输出的数据插值得到的。而其输出是一个或者多个颜色值。</p>
+<p>​    这一阶段可以完成很多重要的渲染技术，其中最重要的技术之一就是纹理采样。为了在片元着色器中进行纹理采样，我们通常会在顶点着色器阶段输出每个顶点对应的纹理坐标，然后经过光栅化阶段对三角网格的3个顶点对应的纹理坐标进行插值后，就可以得到起覆盖的片元的纹理坐标</p>
+<h4 id="逐片元操作"><a href="#逐片元操作" class="headerlink" title="逐片元操作"></a>逐片元操作</h4><p><strong>逐片元操作</strong>是OpenGL中的说法，在DX中这个阶段被称作<strong>输出合并阶段</strong>。</p>
+<p>（1）决定每个片元的可见性，涉及很多测试工作，例如深度测试，模板测试。</p>
+<p> （2）如果一个片元通过了所有测试后，就需要把这个片元的颜色值和已经储存在颜色缓冲区的色彩进行合并，或者说混合</p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241029212123.png" alt="image-20241029144526686"></p>
+<p>​     测试的过程实际上是个比较复杂的过程，而且不同的图形接口（OpenGL和DX）的实现细节也不尽相同。</p>
+<h5 id="模板测试"><a href="#模板测试" class="headerlink" title="模板测试"></a>模板测试</h5><p>与之相关的是模板缓冲（Stencil Buffer）。模板缓冲和颜色缓冲，深度缓冲几乎是一类东西。如果开启了模板测试，Gpu首先读取（使用读取掩码）模板缓冲区中该片元位置的模板值，然后将该值和读取（使用读取掩码）到的参考值进行比较，这个比较函数可以由开发者指定的，例如小于等于舍弃该片元，或者大于等于舍弃该片元。如果这个片元没有通过测试，该片元就会被舍弃。不管一个片元有没有通过模板测试，我们都可以根据模板测试和之后的深度测试结果来修改模板缓冲区，这个操作也是由开发者指定的。模板测试通常用于限制渲染区域，或者渲染阴影，轮廓渲染等</p>
+<img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241029212124.png" alt="image-20241029144347791" style="zoom: 80%;" />
+
+<h5 id="深度测试"><a href="#深度测试" class="headerlink" title="深度测试"></a>深度测试</h5><p>如果开启了<strong>深度测试</strong>，Gpu会把该片元的深度值和已经存在于深度缓冲中的深度值进行比较。这个比较函数也是可由开发者设置的，例如小于时舍弃该片元，或者大于时舍弃该片元。通常这个比较函数是小于等于，即如果这个片元的深度大于等于当前深度缓冲区中的值，那么就舍弃它。这是因为我们总想只显示出离摄像机最近的物体，而那些被其他物体遮挡的就不需要出现在屏幕上。和模板测试不同的是，如果一个片元没有通过深度测试，它就没有权利更改深度缓冲区的值。如果一个片元通过了测试，那么开发者可以指定是否要用这个片元的深度值覆盖所有的深度值</p>
+<img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241029212126.png" alt="image-20241029144429455" style="zoom:80%;" />
+
+<h5 id="合并混合"><a href="#合并混合" class="headerlink" title="合并混合"></a>合并混合</h5><p><strong>合并</strong> ，渲染过程是一个物体接着一个物体画到屏幕上，而每个像素的颜色信息被储存在一个名为颜色缓冲的地方。因此，当我们执行这次渲染时，颜色缓冲中往往已经有了上次渲染之后的颜色结果，那么，我们使用这次渲染得到的颜色完全覆盖掉之前的结果还是进行其他处理，就是合并需要解决的。</p>
+<p>对于不透明物体，开发者可以关闭混合（Blend）操作。这样片元着色器计算得到的颜色值就会之间覆盖掉颜色缓冲区中的像素值。但对于半透明物体，就需要混合操作来让这个物体看起来是透明的。</p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241029212129.png" alt="image-20241029145045268"></p>
+<h5 id="测试总结"><a href="#测试总结" class="headerlink" title="测试总结"></a>测试总结</h5><p><strong>各种测试</strong>的顺序并不是唯一的，虽然从逻辑上来说这些测试是在片元着色器之后进行的，但对于大多数GPU来说，会尽可能在执行片元着色器之前进行这些测试。因为当你在片元着色器进行了大量的计算及设置，最后测试没通过，可以说是计算成本全都浪费了。作为一个想充分提高速度的GPU，肯定是希望尽可能早的指定哪些片元会被舍弃，对这些片元就不再需要在使用片元着色器来计算他们的颜色。Unity的渲染流水中，深度测试就是在片元着色器之前。</p>
+<p>   但是，如果将这些测试提前的话，其检验结果可能会与片元着色器中的一些操作冲突。例如片元着色器在进行透明度测试，而这个片元没有通过透明度测试，我们会在着色器中调用API(clip)函数来手动将其舍弃。这就导致GPU无法提前执行各种测试。因此，如果片元着色器中的操作和提前测试发生冲突就会禁用提前测试。这样性能上就会下降，也是透明度测试导致性能下降的原因。</p>
+<p>​    当模型图元经过层层计算及测试后，就会显示到屏幕上。我们的屏幕显示的就是颜色缓冲区中的颜色值。但是，为了避免我们看到正在光栅化的图元，GPU会使用<strong>双重缓冲</strong>策略。对场景的渲染是发生在幕后的，即在<strong>后置缓冲</strong>中，一旦场景已经被渲染到后置缓冲中，GPU就会交换后置缓冲区和<strong>前置缓冲</strong>的内容，前置缓冲区就是显示在屏幕上的图像。由此，保证我们看到的图像是连续的。</p>
+<h1 id="附加知识"><a href="#附加知识" class="headerlink" title="附加知识"></a>附加知识</h1><h2 id="1，CPU与GPU如何并行工作？"><a href="#1，CPU与GPU如何并行工作？" class="headerlink" title="1，CPU与GPU如何并行工作？"></a>1，CPU与GPU如何并行工作？</h2><p>​    我们之前看到的是一个流水线式的模式，如果需要CPU和GPU并行工作，就需要使用<strong>命令缓冲区（<strong><strong>Command Buffer</strong></strong>）。</strong></p>
+<p>​    命令缓冲区包含了一个缓冲队列，由Cpu向其中添加命令，而由Gpu从中读取命令，添加和读取过程是相互独立的。命令缓冲区使得Cpu和Gpu可以相互独立工作。当Gpu需要渲染一些对象时，它就可以从命令队列中取出一个命令并执行。</p>
+<p>​    命令缓冲区有很多种类，Draw Call就是一种。其他命令还有改变渲染状态等。</p>
+<img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241029212131.png" alt="image-20241029150329421" style="zoom: 80%;" />
+
+<h2 id="2，什么是固定管线渲染？"><a href="#2，什么是固定管线渲染？" class="headerlink" title="2，什么是固定管线渲染？"></a>2，什么是固定管线渲染？</h2><p>  固定函数的流水线（Fixed-Function Pipeline），简称固定管线，通常是指在较旧的Gpu上实现的渲染流水线。这种流水线只给开发者提供一些配置操作，但开发者没有对流水线阶段的完全控制权。</p>
+<p>​    在Unity中目前的固定管线shader都会自动编译顶点片元shader。</p>
+<h2 id="3，什么是Shader"><a href="#3，什么是Shader" class="headerlink" title="3，什么是Shader?"></a>3，什么是Shader?</h2><p> Gpu流水线上一些可高度编程的阶段，而由着色器编译出来的最终代码是会在Gpu上运行的；</p>
+<p> 有一些特定类型的着色器，如顶点着色器，片元着色器等。</p>
+<p> 依靠着色器我们可以控制流水线中的渲染细节，例如用顶点着色器来进行顶点变换及传递数据，用片元着色器来进行逐像素渲染。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://mao1mao2mao3mao4.github.io">mao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://mao1mao2mao3mao4.github.io/posts/2744d240.html">https://mao1mao2mao3mao4.github.io/posts/2744d240.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mao1mao2mao3mao4.github.io" target="_blank">mao的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Unity/">Unity</a><a class="post-meta__tags" href="/tags/%E6%B8%B2%E6%9F%93/">渲染</a></div><div class="post_share"><div class="social-share" data-image="/img/%E5%A4%B4%E5%83%8F.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/6df7cc6d.html" title="Unity —— Shader 入门"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Unity —— Shader 入门</div></div></a></div><div class="next-post pull-right"><a href="/posts/b6499ec4.html" title="Unity——Shader实现边缘发光效果"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Unity——Shader实现边缘发光效果</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/b6499ec4.html" title="Unity——Shader实现边缘发光效果"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-28</div><div class="title">Unity——Shader实现边缘发光效果</div></div></a></div><div><a href="/posts/798e1f8c.html" title="Unity —— UnityShader介绍"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-29</div><div class="title">Unity —— UnityShader介绍</div></div></a></div><div><a href="/posts/6df7cc6d.html" title="Unity —— Shader 入门"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-29</div><div class="title">Unity —— Shader 入门</div></div></a></div><div><a href="/posts/f6384f1b.html" title="AddressAble使用经验"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-12</div><div class="title">AddressAble使用经验</div></div></a></div><div><a href="/posts/a9d23a86.html" title="小地图制作——Unity篇"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-20</div><div class="title">小地图制作——Unity篇</div></div></a></div><div><a href="/posts/a47dbcc3.html" title="Unity知识"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-19</div><div class="title">Unity知识</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">mao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">55</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/mao1mao2mao3mao4"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.</span> <span class="toc-text">图形接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4"><span class="toc-number">2.</span> <span class="toc-text">渲染流水</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E9%98%B6%E6%AE%B5%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">应用阶段：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E5%88%B0%E5%86%85%E5%AD%98%E4%B8%AD%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85"><span class="toc-number">2.1.1.</span> <span class="toc-text">把数据加载到内存中做的事情</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%B8%B2%E6%9F%93%E7%8A%B6%E6%80%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85"><span class="toc-number">2.1.2.</span> <span class="toc-text">设置渲染状态做的事情</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8DrawCall"><span class="toc-number">2.1.3.</span> <span class="toc-text">调用DrawCall</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E9%98%B6%E6%AE%B5%E5%92%8C%E5%85%89%E6%A0%85%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.</span> <span class="toc-text">几何阶段和光栅化阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.1.</span> <span class="toc-text">几何阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">顶点着色器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">空间转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A3%81%E5%89%AA"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">裁剪</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E6%A0%85%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.2.</span> <span class="toc-text">光栅化阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">主要操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E8%A7%92%E5%BD%A2%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">三角形设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E8%A7%92%E5%BD%A2%E9%81%8D%E5%8E%86"><span class="toc-number">2.2.2.3.</span> <span class="toc-text">三角形遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%87%E5%85%83%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-number">2.2.2.4.</span> <span class="toc-text">片元着色器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%90%E7%89%87%E5%85%83%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.2.5.</span> <span class="toc-text">逐片元操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%B5%8B%E8%AF%95"><span class="toc-number">2.2.2.5.1.</span> <span class="toc-text">模板测试</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95"><span class="toc-number">2.2.2.5.2.</span> <span class="toc-text">深度测试</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E6%B7%B7%E5%90%88"><span class="toc-number">2.2.2.5.3.</span> <span class="toc-text">合并混合</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93"><span class="toc-number">2.2.2.5.4.</span> <span class="toc-text">测试总结</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%8A%A0%E7%9F%A5%E8%AF%86"><span class="toc-number">3.</span> <span class="toc-text">附加知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%8CCPU%E4%B8%8EGPU%E5%A6%82%E4%BD%95%E5%B9%B6%E8%A1%8C%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">1，CPU与GPU如何并行工作？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%8C%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%BA%E5%AE%9A%E7%AE%A1%E7%BA%BF%E6%B8%B2%E6%9F%93%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">2，什么是固定管线渲染？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%8C%E4%BB%80%E4%B9%88%E6%98%AFShader"><span class="toc-number">3.3.</span> <span class="toc-text">3，什么是Shader?</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/798e1f8c.html" title="Unity —— UnityShader介绍">Unity —— UnityShader介绍</a><time datetime="2024-10-29T13:21:03.225Z" title="发表于 2024-10-29 21:21:03">2024-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/6df7cc6d.html" title="Unity —— Shader 入门">Unity —— Shader 入门</a><time datetime="2024-10-29T13:21:03.225Z" title="发表于 2024-10-29 21:21:03">2024-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2744d240.html" title="Unity —— 渲染知识入门">Unity —— 渲染知识入门</a><time datetime="2024-10-29T13:21:03.225Z" title="发表于 2024-10-29 21:21:03">2024-10-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/b6499ec4.html" title="Unity——Shader实现边缘发光效果">Unity——Shader实现边缘发光效果</a><time datetime="2024-10-28T13:37:35.686Z" title="发表于 2024-10-28 21:37:35">2024-10-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/1388458c.html" title="Unity —— AI">Unity —— AI</a><time datetime="2024-10-19T11:47:25.688Z" title="发表于 2024-10-19 19:47:25">2024-10-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By mao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
