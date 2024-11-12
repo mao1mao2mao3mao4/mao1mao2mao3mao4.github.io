@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta name="referrer" content="no-referrer"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UnityShader——中级，LightMap | mao的博客</title><meta name="author" content="mao"><meta name="copyright" content="mao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LightMap渲染类型 Lighting设置在比较新的版本中，Lighting中的设置位置发生的变化，需要通过Windows-》Rendering进入，按照图示前往    skybox：环境光是天空盒的颜色 Gradient：对天空，中间，大地的颜色做了一个详细的区分 color：单一颜色代表环境光 反射光的选项     实时光和烘焙光各自的控制  实时光照GI启用在2023.2版本中，一个场景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UnityShader——中级，LightMap">
+<meta property="og:url" content="https://mao1mao2mao3mao4.github.io/posts/815f1d7.html">
+<meta property="og:site_name" content="mao的博客">
+<meta property="og:description" content="LightMap渲染类型 Lighting设置在比较新的版本中，Lighting中的设置位置发生的变化，需要通过Windows-》Rendering进入，按照图示前往    skybox：环境光是天空盒的颜色 Gradient：对天空，中间，大地的颜色做了一个详细的区分 color：单一颜色代表环境光 反射光的选项     实时光和烘焙光各自的控制  实时光照GI启用在2023.2版本中，一个场景">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mao1mao2mao3mao4.github.io/img/%E5%A4%B4%E5%83%8F.jpg">
+<meta property="article:published_time" content="2024-11-12T02:39:23.302Z">
+<meta property="article:modified_time" content="2024-11-12T10:02:19.875Z">
+<meta property="article:author" content="mao">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="渲染">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mao1mao2mao3mao4.github.io/img/%E5%A4%B4%E5%83%8F.jpg"><link rel="shortcut icon" href="/img/%E5%8E%9F%E7%A5%9E%E7%81%AB.png"><link rel="canonical" href="https://mao1mao2mao3mao4.github.io/posts/815f1d7.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UnityShader——中级，LightMap',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-12 18:02:19'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/windows.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="mao的博客"><img class="site-icon" src="/img/%E5%8E%9F%E7%A5%9E%E7%81%AB.png"/><span class="site-name">mao的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UnityShader——中级，LightMap</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-12T02:39:23.302Z" title="发表于 2024-11-12 10:39:23">2024-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-12T10:02:19.875Z" title="更新于 2024-11-12 18:02:19">2024-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Unity/">Unity</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UnityShader——中级，LightMap"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="LightMap"><a href="#LightMap" class="headerlink" title="LightMap"></a>LightMap</h1><h1 id="渲染类型"><a href="#渲染类型" class="headerlink" title="渲染类型"></a>渲染类型</h1><p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112105625.png" alt="image-20241112105621401"></p>
+<h2 id="Lighting设置"><a href="#Lighting设置" class="headerlink" title="Lighting设置"></a>Lighting设置</h2><p>在比较新的版本中，Lighting中的设置位置发生的变化，需要通过Windows-》Rendering进入，按照图示前往</p>
+<img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112110338.png" alt="image-20241112110331875" style="zoom:67%;" />
+
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112110340.png" alt="image-20241112110246754"></p>
+<p>skybox：环境光是天空盒的颜色</p>
+<p>Gradient：对天空，中间，大地的颜色做了一个详细的区分</p>
+<p>color：单一颜色代表环境光</p>
+<p><strong>反射光的选项</strong></p>
+<img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112141643.png" alt="image-20241112141637421" style="zoom:67%;" />
+
+
+
+<p><strong>实时光和烘焙光各自的控制</strong></p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112141753.png" alt="image-20241112141749786"></p>
+<h2 id="实时光照GI"><a href="#实时光照GI" class="headerlink" title="实时光照GI"></a>实时光照GI</h2><h3 id="启用"><a href="#启用" class="headerlink" title="启用"></a>启用</h3><p>在2023.2版本中，一个场景需要新建一个LightAssets，然后才能对这些数据进行修改</p>
+<p>将场景中的需要进行实时光照贴图渲染的游戏对象在设置窗口右上角的Static选项框中勾选下图所示的左侧有对钩的选项就可以启动光照贴图，然后再去Lighting窗口中点击最下面的 <strong>Generate Lighting</strong>选项就能生成实时光照贴图，需要注意场景中的需要进行实时光照贴图的灯光的选项也应该是RealTime</p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112145412.png" alt="image-20241112145408506"></p>
+<p>实时光照贴图有一定的精度区分，在Lighting的设置中，下图红框所所示的数字就是实时光照贴图的精度，这个值越大，贴图越精细</p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112145418.png" alt="image-20241112145201797"></p>
+<p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112145420.png" alt="image-20241112145157361"></p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112151113.png" alt="image-20241112151107945"></p>
+<ol>
+<li>Directional Mode：直射模式</li>
+<li>Albedo Boost：间接光照的强度</li>
+<li>Indirect Intensity:光的发射率，金属材质就稍微调高</li>
+<li>LightMap Parameters:对光照贴图进行设置</li>
+</ol>
+<h3 id="GIcache"><a href="#GIcache" class="headerlink" title="GIcache"></a>GIcache</h3><p><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112175929.png" alt="image-20241112150346082"></p>
+<p>实际上实时光的光照贴图是一种预计算技术，在游戏过程中如果场景发生变化，会根据保存在GIcache中的数据进行计算</p>
+<h2 id="MixedGI"><a href="#MixedGI" class="headerlink" title="MixedGI"></a>MixedGI</h2><p>取消Lighting设置的RealTime，并将灯光的Mode设置为Mixed，并且，这里的结果都写死的，并不是实时光照中的参考计预计算</p>
+<p>补充一些知识，选用Subtractive技术，静态物体的阴影不会作用在动态物体上，需要使用Light Props或者被称为光照探针等一些技术</p>
+<p>手游使用Subtractive技术偏多，Unity推荐使用ShadowMask</p>
+<p>这里有三种光照模式提供选择</p>
+<p><strong>Mixed Lighting:</strong></p>
+<p><strong>Bake Indirect</strong>:只烘培间接光照，直接光以及阴影进行实时计算。运行时改变灯光，直接光照和阴影就会变，但间接光不变（如果间接光弱，视觉影响不大）。只减少间接光照的实时计算，适合对光照要求较高的场景，内存消耗小，当然性能的消耗也大。</p>
+<p><strong>shadowmask</strong>：对静态物体直接光照产生的阴影也会被烘培到ShadowMask中，动态物体不受影响。运行时改变灯光只有间接光照和静态物体的阴影不受影响。内存中多了一份Shadowmask，比上一部少了静态物体阴影的计算，占用性能小了一点。在2023版本中，需要对在ProjectSetting中的Quality下的<strong>ShadowMask Mode</strong>进行一个设置，默认开启的是<strong>DistanceShadowMask</strong>，要实现上述描述的效果，要调整为<strong>ShadowMask</strong>，同时在该模式下还具备<strong>Shadow  Distance</strong>的属性设置，在摄像机多少距离内才产生阴影。下面给出正式的解释</p>
+<p><strong>单就阴影来说</strong></p>
+<ul>
+<li><p>当Bake过后光源没有发生变化的时候，两者区别不大（就是工作方式有些区别）</p>
+</li>
+<li><p>当Bake过后光源变化了的时候，两者区别明显</p>
+<p>在Distance之外，两种模式没有区别，距离外动态物体都不能投射阴影，静态物理都靠预先计算的结果。</p>
+<p>在Distance之内，DistanceShadowMask，使用ShadowMap实时计算动态物体静态物体阴影。而ShadowMask 只实时计算动态物体的阴影。</p>
+</li>
+</ul>
+<p><strong>substrative</strong>：静态物体：直接光和间接光都烘焙到光照贴图中；动态物体：接收直接光，可以在静态物体上投射主方向光的阴影。运行时改变光照，静态物体直接光、间接光、阴影不受影响，动态物体的直接光、主灯光（平行光）投射的阴影受影响、其他灯光无阴影。性能消耗最小，应用广。</p>
+<h3 id="参数解释"><a href="#参数解释" class="headerlink" title="参数解释"></a>参数解释</h3><h4 id="参照图片"><a href="#参照图片" class="headerlink" title="参照图片"></a>参照图片</h4><img src="https://gitee.com/cat-hair-hutao/images/raw/master/Typora/20241112171806.png" alt="image-20241112171755390" style="zoom: 150%;" />
+
+<p><strong>Lightmapper （Progressive Cpu）</strong></p>
+<p>Prioritize View ：烘培的先后顺序，先烘培摄像机视锥体里面已经启用的元素，然后在烘培视锥体以外的。</p>
+<p>Direct Samples： 直接光照采样数量 影响质量、速度</p>
+<p>Indirect Samples ：间接光照采样数量 影响质量、速度</p>
+<p>Enviroment Samples：环境光采样数量 影响质量、速度</p>
+<p> Bounces: 间接光的反射次数。跟踪路径时要执行的间接反弹次数。 对于大多数场景来说，两次反弹就足够了。 对于一些室内场景，可能需要更多。</p>
+<p><strong>Filtering:滤波</strong></p>
+<ol>
+<li>Direct Denoiser:减少直射光噪点。</li>
+<li>Direct Filter：直射光滤波。None:无。Gaussian：高斯滤波器。A-Trous：A-Trous滤波器。Indirect Denoiser:减少间接光噪点。</li>
+<li>Indirect Filter：间接光滤波。None:无。Gaussian：高斯滤波器。A-Trous：A-Trous滤波器。 Ambient Denoiser:减少环境光噪点。</li>
+<li>Indirect Filter：环境光滤波。None:无。Gaussian：高斯滤波器。A-Trous：A-Trous滤波器。</li>
+</ol>
+<p>Indirect Resolution：使用此值指定用于间接照明计算的每个单元的纹理元素数。 增加此值可提高间接光的视觉质量，但也会增加烘烤光照贴图所需的时间。 默认值是2。</p>
+<p>Lightmap Resolution：使用此值指定用于光照贴图的每个单位的纹理像素数。 增加此值可提高光照贴图质量，但也会增加烘烤时间。 默认值是40。</p>
+<p>Lightmap Padding：使用此值可指定烘焙光照贴图中不同形状之间的分隔（以texel为单位）。 默认值是2。</p>
+<p>Lightmap Size：光照贴图大小。</p>
+<p>Compress Lightmaps:压缩的光照贴图需要较少的存储空间，但压缩过程会将不需要的视觉效果引入到纹理中。 选中此复选框可压缩光照贴图，或取消选中它以保持其未压缩状态。 该复选框默认打勾。</p>
+<p>Ambient Occlusion:允许您控制环境遮挡中表面的相对亮度。 较高的值表示遮挡区和全亮区之间的较大对比度。 这仅适用于由GI系统计算的间接照明</p>
+<p>Directional Mode:可以设置光照贴图来存储关于物体表面上每个点处主导入射光的信息。</p>
+<p> Directional:在方向模式下，会生成第二个光照贴图来存储入射光的主要方向。 这允许漫射法线贴图材料与GI一起工作。 定向模式需要大约两倍的额外光照贴图数据的存储空间。 定向光照贴图无法在SM2.0硬件或使用GLES2.0时解码。 他们将回退到非定向光照贴图。</p>
+<p>  Non-directiona:无方向模式。</p>
+<p>ndirect Intensity:控制实时存储的间接光照和烘焙光照贴图的亮度，亮度值介于0和5之间。大于1的值会增加间接光的强度，而小于1的值会降低间接光的强度。 默认值是1。</p>
+<p>Albedo Boost:控制通过强化场景中材质的反照率来控制表面之间反射的光量，数值介于1和10之间。增加此值可将反射率值绘制为白色以进行间接光线计算。 默认值1是物理上准确的。</p>
+<p><strong>Lightmapper （Enlighten）</strong></p>
+<ol>
+<li>Indirect Resolution：间接光照分辨率，数值越高，光照细节越高</li>
+<li>Lightmap Resolution：光照贴图分辨率（每单位长度多少体素），通常设置为Indirect Resolution的10倍左右</li>
+<li>Lightmap Padding：修正两个物体的Lightmap之间的距离，以避免颜色渗透</li>
+<li>Lightmap Size：光照贴图大小</li>
+<li>Compress Lightmaps：是否压缩光照贴图</li>
+<li>Ambient Occlusion：是否烘焙环境光遮罩</li>
+<li>Final Gather：是否对最后一次GI光线反射后的光照结果再进行一次FG计算，勾选上会有较好的质量表现，但烘焙时间会增加</li>
+<li>Directional Mode:可以设置光照贴图来存储关于物体表面上每个点处主导入射光的信息。</li>
+<li>Directional:在方向模式下，会生成第二个光照贴图来存储入射光的主要方向。 这允许漫射法线贴图材料与GI一起工作。 定向模式需要大约两倍的额外光照贴图数据的存储空间。 定向光照贴图无法在SM2.0硬件或使用GLES2.0时解码。 他们将回退到非定向光照贴图。</li>
+<li>Non-directiona:选它。不要考虑。</li>
+<li>Indirect Intensity：间接光照的强度</li>
+<li>Albedo Boost:控制通过强化场景中材质的反照率来控制表面之间反射的光量，数值介于1和10之间。</li>
+</ol>
+<p><strong>补充知识</strong></p>
+<p>同时开启实时实时光照GI和BakeGi</p>
+<p>起到决定性作用的是光源的mode</p>
+<h1 id="在Shader中的运行"><a href="#在Shader中的运行" class="headerlink" title="在Shader中的运行"></a>在Shader中的运行</h1><p>统一是SurfaceShader中根据设定自动生成的</p>
+<p>顶点着色器中的设置</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DYNAMICLIGHTMAP_ON <span class="comment">//实时光照GI</span></span></span><br><span class="line">o.lmap.zw = v.texcoord2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> LIGHTMAP_ON<span class="comment">//bake光照GI</span></span></span><br><span class="line">o.lmap.xy = v.texcoord1.xy * unity_LightmapST.xy + unity_LightmapST.zw;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>片元着色器中的设置</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Setup lighting environment</span></span><br><span class="line">UnityGI gi;</span><br><span class="line">UNITY_INITIALIZE_OUTPUT(UnityGI, gi);</span><br><span class="line">gi.indirect.diffuse = <span class="number">0</span>;</span><br><span class="line">gi.indirect.specular = <span class="number">0</span>;</span><br><span class="line">gi.light.color = _LightColor0.rgb;</span><br><span class="line">gi.light.dir = lightDir;</span><br><span class="line"><span class="comment">// Call GI (lightmaps/SH/reflections) lighting function</span></span><br><span class="line">UnityGIInput giInput;</span><br><span class="line">UNITY_INITIALIZE_OUTPUT(UnityGIInput, giInput);</span><br><span class="line">giInput.light = gi.light;</span><br><span class="line">giInput.worldPos = worldPos;</span><br><span class="line">giInput.worldViewDir = worldViewDir;</span><br><span class="line">giInput.atten = atten;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(LIGHTMAP_ON) || defined(DYNAMICLIGHTMAP_ON)</span></span><br><span class="line">  giInput.lightmapUV = IN.lmap;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">  giInput.lightmapUV = <span class="number">0.0</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> UNITY_SHOULD_SAMPLE_SH &amp;&amp; !UNITY_SAMPLE_FULL_SH_PER_PIXEL</span></span><br><span class="line">  giInput.ambient = IN.sh;</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">  giInput.ambient.rgb = <span class="number">0.0</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">giInput.probeHDR[<span class="number">0</span>] = unity_SpecCube0_HDR;</span><br><span class="line">giInput.probeHDR[<span class="number">1</span>] = unity_SpecCube1_HDR;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(UNITY_SPECCUBE_BLENDING) || defined(UNITY_SPECCUBE_BOX_PROJECTION)</span></span><br><span class="line">  giInput.boxMin[<span class="number">0</span>] = unity_SpecCube0_BoxMin; <span class="comment">// .w holds lerp value for blending</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> UNITY_SPECCUBE_BOX_PROJECTION</span></span><br><span class="line">  giInput.boxMax[<span class="number">0</span>] = unity_SpecCube0_BoxMax;</span><br><span class="line">  giInput.probePosition[<span class="number">0</span>] = unity_SpecCube0_ProbePosition;</span><br><span class="line">  giInput.boxMax[<span class="number">1</span>] = unity_SpecCube1_BoxMax;</span><br><span class="line">  giInput.boxMin[<span class="number">1</span>] = unity_SpecCube1_BoxMin;</span><br><span class="line">  giInput.probePosition[<span class="number">1</span>] = unity_SpecCube1_ProbePosition;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">LightingStandard_GI(o, giInput, gi);</span><br><span class="line"></span><br><span class="line"><span class="comment">// realtime lighting: call lighting function</span></span><br><span class="line">c += LightingStandard (o, worldViewDir, gi);</span><br><span class="line">UNITY_APPLY_FOG(_unity_fogCoord, c); <span class="comment">// apply fog</span></span><br><span class="line">UNITY_OPAQUE_ALPHA(c.a);</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://mao1mao2mao3mao4.github.io">mao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://mao1mao2mao3mao4.github.io/posts/815f1d7.html">https://mao1mao2mao3mao4.github.io/posts/815f1d7.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mao1mao2mao3mao4.github.io" target="_blank">mao的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Unity/">Unity</a><a class="post-meta__tags" href="/tags/%E6%B8%B2%E6%9F%93/">渲染</a></div><div class="post_share"><div class="social-share" data-image="/img/%E5%A4%B4%E5%83%8F.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/fef60aa9.html" title="UnityShader——中级，SurfaceShader"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UnityShader——中级，SurfaceShader</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/d132fa0f.html" title="UnityShader入门——卡通效果实现"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-02</div><div class="title">UnityShader入门——卡通效果实现</div></div></a></div><div><a href="/posts/53323d01.html" title="UnityShader——中级"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-04</div><div class="title">UnityShader——中级</div></div></a></div><div><a href="/posts/233dac0e.html" title="Unity —— Shader入门，光照"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-30</div><div class="title">Unity —— Shader入门，光照</div></div></a></div><div><a href="/posts/4139c4a.html" title="Unity —— Shader入门，法线贴图"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-31</div><div class="title">Unity —— Shader入门，法线贴图</div></div></a></div><div><a href="/posts/bbb76467.html" title="Unity —— Shader，常用函数"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-30</div><div class="title">Unity —— Shader，常用函数</div></div></a></div><div><a href="/posts/3783ec90.html" title="Unity —— Shader入门，纹理应用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-01</div><div class="title">Unity —— Shader入门，纹理应用</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">mao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/mao1mao2mao3mao4"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LightMap"><span class="toc-number">1.</span> <span class="toc-text">LightMap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">渲染类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lighting%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">Lighting设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E5%85%89%E7%85%A7GI"><span class="toc-number">2.2.</span> <span class="toc-text">实时光照GI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%94%A8"><span class="toc-number">2.2.1.</span> <span class="toc-text">启用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0"><span class="toc-number">2.2.2.</span> <span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GIcache"><span class="toc-number">2.2.3.</span> <span class="toc-text">GIcache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MixedGI"><span class="toc-number">2.3.</span> <span class="toc-text">MixedGI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A"><span class="toc-number">2.3.1.</span> <span class="toc-text">参数解释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E7%85%A7%E5%9B%BE%E7%89%87"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">参照图片</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%A8Shader%E4%B8%AD%E7%9A%84%E8%BF%90%E8%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">在Shader中的运行</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/815f1d7.html" title="UnityShader——中级，LightMap">UnityShader——中级，LightMap</a><time datetime="2024-11-12T02:39:23.302Z" title="发表于 2024-11-12 10:39:23">2024-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/fef60aa9.html" title="UnityShader——中级，SurfaceShader">UnityShader——中级，SurfaceShader</a><time datetime="2024-11-08T02:30:20.551Z" title="发表于 2024-11-08 10:30:20">2024-11-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/53323d01.html" title="UnityShader——中级">UnityShader——中级</a><time datetime="2024-11-04T06:51:20.324Z" title="发表于 2024-11-04 14:51:20">2024-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/d132fa0f.html" title="UnityShader入门——卡通效果实现">UnityShader入门——卡通效果实现</a><time datetime="2024-11-02T07:50:41.167Z" title="发表于 2024-11-02 15:50:41">2024-11-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/3783ec90.html" title="Unity —— Shader入门，纹理应用">Unity —— Shader入门，纹理应用</a><time datetime="2024-11-01T02:22:45.129Z" title="发表于 2024-11-01 10:22:45">2024-11-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By mao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
