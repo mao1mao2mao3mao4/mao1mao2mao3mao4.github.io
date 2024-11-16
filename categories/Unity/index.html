@@ -51,7 +51,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-11-16 22:17:22'
+  postUpdate: '2024-11-16 22:29:50'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -148,152 +148,136 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/background.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="mao的博客"><img class="site-icon" src="/img/%E5%8E%9F%E7%A5%9E%E7%81%AB.png"/><span class="site-name">mao的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Unity</h1></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/8f055b02.html" title="UnityShader——水效果实现">UnityShader——水效果实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-14T03:57:31.449Z" title="发表于 2024-11-14 11:57:31">2024-11-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">水效果水面颜色渐变效果深度图定义使用深度图来决定水体表面和底部的距，从而改变该部分水体的颜色，达到一个从岸边到深水区的颜色渐变效果
-深度图在Shader使用
-使用SurfaceShader
-深度图获取固定名称
-123sampler2D _CameraDepthTexture;//sampler2D_float ，增加精度，预防某些手机精度不够
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/background.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="mao的博客"><img class="site-icon" src="/img/%E5%8E%9F%E7%A5%9E%E7%81%AB.png"/><span class="site-name">mao的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">Unity</h1></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/1388458c.html" title="Unity —— AI">Unity —— AI</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-19T11:47:25.688Z" title="发表于 2024-10-19 19:47:25">2024-10-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">Unity学习路线图AI 系统导航 AI navigation 
+有限状态机 FSM
+AI行为树
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3f28e95a.html" title="Unity—— HybridCLR，热更新">Unity—— HybridCLR，热更新</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-18T16:31:07.230Z" title="发表于 2024-10-19 00:31:07">2024-10-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">https://zhuanlan.zhihu.com/p/485311523 入门介绍 ，知乎
+https://hybridclr.doc.code-philosophy.com/docs/other/businesscase 使用文档
+https://code-philosophy.com/ 开发商官网
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/d909f64.html" title="Unity性能优化——资源优化">Unity性能优化——资源优化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-24T09:02:42.645Z" title="发表于 2024-09-24 17:02:42">2024-09-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">资源优化Mesh动态模型:面片数&lt;3000材质数&lt;3骨骼数&lt;50静态模型:顶点数&lt;500
+上述是在手游中模型优化的参考标准，
+Audio：长时间音乐（背景音乐）：使用mp3的压缩格式，主要是减少了安装包的大小	
+短时间音乐（音效）：使用wav的格式 ，经常性的播放，不需要频繁加载，使用mp3则是会频繁的解压缩操作
+推荐博客：unity优化—资源优化_unity发布exe时很慢-CSDN博客
+有对Unity中音频资源导入的详细讲解
+Texture贴图长宽&lt;1024，Unity最高支持2048
+Shader尽量减少复杂的数学运算
+减少discard操作	
+资源冗余Resources目录下的所有文件最后都会被打包到安装包中
+同样的资源建议存在唯一路径
+资源检测与分析AB包上的分析
+Unity官方自带的UPR分析工具，第三方工具UWA
+UWA | 致力于游戏VR和AR应用提供项目研发解决方案 | 简单优化、优化简单 | 侑虎科技 (uwa4d.com)
+性能优化LOD
 
-同时还需要开启摄像机的深度
-深度图采样深度图渲染出来后在屏幕空间内，要到屏幕空间进行采样，需要获取到屏幕坐标的UV才能对深度图进行采样
-Input结构体中额外定义1float4 proj;//屏幕坐标
+模型贴图精度调整，原糊近清，直接的参照是图中的组件，在assets文件夹中将对应的模型拖拽到该 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/83ed1f81.html" title="Unity——Dots">Unity——Dots</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-24T08:14:29.959Z" title="发表于 2024-09-24 16:14:29">2024-09-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">Unity学习目标
+ Dots
 
-属性1234fixed4 _WaterShallowColor;//浅水区的颜色fixed4 _WaterDeepColor;//深水区的颜色half _DeepPower;//水深强度half _TranAmount;//透明度数
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/132b0908.html" title="Unity性能优化">Unity性能优化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-20T08:31:59.153Z" title="发表于 2024-09-20 16:31:59">2024-09-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">主界面操作窗口
 
-顶点着色器123i.proj = ComputeScreenPos(UnityObjectToClipPos(v.vertex));//根据顶点计算屏幕空间，没有齐次裁剪COMPUTE_EYEDEPTH(i.pr ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/93e23347.html" title="UnityShader——中级，Shader动画">UnityShader——中级，Shader动画</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-14T00:52:00.854Z" title="发表于 2024-11-14 08:52:00">2024-11-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">Shader动画种类序列帧动画
-对贴图进行采样
-滚动动画
-顶点动画
-最常用的
-序列帧动画过程上类似于赛璐璐动画的实现，一张贴图上均匀分布动画的不同帧数，配合缩放和位移进行采样即可
-案例12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576Shader &quot;Unlit/024&quot;&#123;    Properties    &#123;        _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; &#123;&#125;       _HorAmount(&quot;HorAmount&quot;, float) = 4       _VerAmount(&quot;VerAmount&quot;, float) = 4       _Speed(&quot;Speed&quot ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/987fbb5a.html" title="UnityShader——中级，高级纹理">UnityShader——中级，高级纹理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-13T01:15:34.472Z" title="发表于 2024-11-13 09:15:34">2024-11-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">高级纹理CubeMap类似于天空盒，正方体的六个面分别渲染
-实现方式手动拖拽6张无缝贴图在Assets中中新建一个Cubemap，位置在Legacy&#x2F;CubeMap中，也可以自行搜索，选择图片之前要先选择清晰度，之后再改无效
-程序化生成代码
-实际上该操作是以指定物体为中心，将周围常见渲染到cubemap上
-123456789101112131415161718192021222324252627282930313233using System;using System.Collections;using System.Collections.Generic;using UnityEditor;using UnityEngine;public class RenderCubeMap : ScriptableWizard&#123;    public Transform renderPos;    public Cubemap cubemap;    [MenuItem(&quot;Tools/3D Render Cubemap&quot;)]    public static ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/815f1d7.html" title="UnityShader——中级，LightMap">UnityShader——中级，LightMap</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-12T02:39:23.302Z" title="发表于 2024-11-12 10:39:23">2024-11-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">LightMap渲染类型
-Lighting设置在比较新的版本中，Lighting中的设置位置发生的变化，需要通过Windows-》Rendering进入，按照图示前往
-
-
-
-skybox：环境光是天空盒的颜色
-Gradient：对天空，中间，大地的颜色做了一个详细的区分
-color：单一颜色代表环境光
-反射光的选项
-
-
-
-
-实时光和烘焙光各自的控制
-
-实时光照GI启用在2023.2版本中，一个场景需要新建一个LightAssets，然后才能对这些数据进行修改
-将场景中的需要进行实时光照贴图渲染的游戏对象在设置窗口右上角的Static选项框中勾选下图所示的左侧有对钩的选项就可以启动光照贴图，然后再去Lighting窗口中点击最下面的 Generate Lighting选项就能生成实时光照贴图，需要注意场景中的需要进行实时光照贴图的灯光的选项也应该是RealTime
-
-实时光照贴图有一定的精度区分，在Lighting的设置中，下图红框所所示的数字就是实时光照贴图的精度，这个值越大，贴图越精细
+参数解释CPU第一个带ms的数据是完成主线程一帧的时间，第二个是渲染一帧图片的时间，值小点好，
+Batches批次，表示调用（Draw Call，也可以简称为DC）的总次数，详见Unityshader的学习笔记，值小点好，在屏幕上输出一个画面
+Save by barching有多少DC被合并到了一个批次，将可能然让这个数据大
+以下二者的数量统计都是相对于摄像机的视椎体来讲的
+Tris屏幕中剩余三角形数量，就算是一个cube在屏幕部分看不见，依然是要计入	
+verts屏幕中剩余顶点数量，Unity中对于顶点的判断是一个面由两个三角形组成，这两个三角形存在共用顶点，一个cube是有由六个面组成，因为一个cube的顶点数量为 4 * 6 &#x3D;24
+（在3D建模软件中创建的模型导入到Unity后，该模型在Unity中显示的三角面和网格顶点的数量和在3D建模软件中的可能不同。因为3D建模软件和Unity对模型的三角面和网格顶点的计算方式可能是不一样的。）
+Screen：屏幕分辨率以及在内存中占据的大小	
 
 
-参数
+红框内的数据代表启动 垂直同步
+垂直同步解释垂直同步用于将游戏 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/a47dbcc3.html" title="Unity知识">Unity知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-19T08:44:54.252Z" title="发表于 2024-09-19 16:44:54">2024-09-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">随机数生成在几秒内连续生成随机数的情况
+1234567  Random.InitState((int)Time.time); //使用时间作为每次生成的种子， float randomKey = Random.Range(-5f, 5f); //会生成随机的数字float randomKey = Random.Range(-5f, 5f); //只会返回一个固定的值float randomKey = Random.value * 10f - 5f; //只会返回一固定的值
 
-Directional Mode：直射模式
-Albedo Boost：间接光照的强度
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/fef60aa9.html" title="UnityShader——中级，SurfaceShader">UnityShader——中级，SurfaceShader</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-08T02:30:20.551Z" title="发表于 2024-11-08 10:30:20">2024-11-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">Unity，SurfaceShader介绍
-Surface Shader和CG其他部分一样，代码也是要写在CGPROGRAM和ENDCG之间。但区别是，它必须写在SubShader内部，而不能写在Pass内部。Surface Shader自己会自动生成所需的各个Pass。由上面的编译格式可以看出，surfaceFunction和lightModel是必须指定的。
-surfaceFunction通常就是名为surf的函数（函数名可以任意），它的函数格式是固定的：
-void surf (Input IN, inout SurfaceOutput o)
-void surf (Input IN, inout SurfaceOutputStandard o)
-void surf (Input IN, inout SurfaceOutputStandardSpecular o)
-lightModel也是必须指定的。由于Unity内置了一些光照函数——Lambert（diffuse）和Blinn-Phong（specular），因此这里在默认情况下会使用内置的Lambert模型。当然我们也可以自定义 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/53323d01.html" title="UnityShader——中级">UnityShader——中级</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-04T06:51:20.324Z" title="发表于 2024-11-04 14:51:20">2024-11-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">UnityShader中级复杂光照Unity 渲染路径:Forward  Deferred  Legacy Vertex Lit   Legacy Deferred
+资源释放对于实现了IDisposable的类来讲，其实例对象都可以通过 using var 来进行对象的获取，这样在超出该对象的作用域后，会默认调用实现的Dispose方法
+12345678       using var evt = PlayerRegisterEvent.Get(); //使用using在超出作用域后自动调用Dispose（）方法    public void Dispose()        &#123;                  GameEventPool&lt;T&gt;.Push ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/8ad6b0cb.html" title="Unity组件——AI navigation">Unity组件——AI navigation</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-05T05:35:18.635Z" title="发表于 2024-09-05 13:35:18">2024-09-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">AI navigation基础
+
+属性讲解Agent Radius：代理半径，决定了烘焙路面距离墙面的距离，当出现两堵墙距离过近导致没有路径出现的情况，可以适当调小该属性
+Height：代理高度，限制代理对象的高度，调整数值可以让代理角色通过桥洞或者隧道等有高度限制的场景
+Step Height：台阶高度，在这个高度范围内的 台阶 会生成烘焙路径
+Max Slope：可以生成烘焙路径的斜坡最大倾斜角度
+Generated Links自动生成外链
+Drop Distance：下落高度
+Jump Distance：跳跃距离
+Component
+
+属性讲解Nav Mesh Agent：自动寻路代理对象，需要自动寻路的添加该组件
 
 
-
-标签名
-描述
+Nav Mesh Obstacle：被其余系统驱动的移动物体，需要Agent主动避开
 
 
 
-Always
-不管使用哪种渲染路径，该pass总会被渲染，但不会计算任何光照
+
+Nav Links
 
 
-ForwardBase
-用于前向渲染。该pass会计算环境光，最重要的平行光，逐顶点&#x2F;SH光源和Lightmaps
+NavMeshdifler
 
 
-ForwardAdd
-用于前向渲染。该pass会计算额外的逐像素光源，每个pass对应一个光源。
+NavMeshSurface
 
 
-Deferred
-用于延迟渲染。该pass会渲染G缓冲（G-buffer）
+使用
+
+在需要烘焙的游戏对象上添加以上组件，保持默认设置，点击有右下角的bake按钮就可以在该游戏对象上生成烘焙路径，Agent可以在该对象表面进行寻路操作
+每次子对象的变动，都需要 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/a00f43ae.html" title="Unity组件——DotWeen">Unity组件——DotWeen</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-04T13:01:36.107Z" title="发表于 2024-09-04 21:01:36">2024-09-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">DotWeen入门实现效果
+打击感
+打字机
+移动
+缩放
+
+代码实现引用命名空间
+1using DG.Tweening;
 
 
-ShadowCaster
-把物体的深度信息渲染到阴影映射纹理或一张深度纹理中
+
+打击感
+
+12Camera.main.transform.DOShakePosition(2,3); //将摄像机按照指定的参数进行晃动 //前者是持续时间，单位是秒，后者是强度
+
+打字机123Text text;text.DOText(&quot;要进行打字机变换文本内容&quot;,3);//对应的需要两个参数，第一个如内容所示，第二个参数代表的是第一个的内容需要在几秒内完成，单位是秒
 
 
-PrepassBase
-用于遗留的延迟渲染。该pass会渲染法线和高光反射的指数部分。
+
+移动1234Text text;text.transform.DOMove(new Vector2(1,1),3); //在3秒内从当前位置移动到指定位置text.transform.DOMove(new Vector2(1,1),3).From(); //在3秒内从指定位置回到当前位置
+
+缩放1234567text.transform.DOScale(1,2); //在2秒内将缩放至从当前值变为1text.transform.DOScale(1,2).From();  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/ea675e82.html" title="Unity组件——TimeLine">Unity组件——TimeLine</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-04T09:34:47.451Z" title="发表于 2024-09-04 17:34:47">2024-09-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">TimeLine创建
+
+TimeLine是控制的本体，Singal是动画中某个指定对象的传递
 
 
-PrepassFinal
-用于遗留的延迟渲染。该pass会通过合并纹理，光照和自发光来渲染得到最后颜色
 
 
-Vertex, VertexLMRGBM和VertexLM
-用于遗留的顶点照明渲染
+如果需要将事件传递出去，场景中需要有加载有下图红框内组件的游戏对象，使用方式和Unity常规的事件系统触发一致，
+1.选择游戏对象
+2.选择方法
 
 
-在Shader对光照渲染模式进行设置12// ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/d132fa0f.html" title="UnityShader入门——卡通效果实现">UnityShader入门——卡通效果实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-02T07:50:41.167Z" title="发表于 2024-11-02 15:50:41">2024-11-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">Unity卡通着色Shader实现另外一篇已经被实现的边缘着色Unity——Shader实现边缘发光效果 | mao的博客 (mao1mao2mao3mao4.github.io)
-法线外拓的三种方式	来自文心一言的回答要将模型空间下的法线转换到视角空间下，你需要使用模型到视图矩阵（UNITY_MATRIX_MV），但需要注意法线变换的特殊性。法线变换需要使用逆转置矩阵（Inverse Transpose Matrix）来保持其垂直性。Unity提供了一个宏UNITY_MATRIX_IT_MV（尽管你之前的代码中名称有误，但这里是为了说明正确的使用方式），它实际上已经包含了模型到视图矩阵的逆转置。
-1.模型空间下
+使用前需要在场景中准备Add有下图所以组件的游戏对象，具体操作可以是直接从assets中将一个创建好的Timeline直接拖拽到场景中准备好的空对象上去
 
-2.视角空间下
 
-3.裁剪空间下
+常用轨道
 
-基础阴影实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/3783ec90.html" title="Unity —— Shader入门，纹理应用和透明效果">Unity —— Shader入门，纹理应用和透明效果</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-01T02:22:45.129Z" title="发表于 2024-11-01 10:22:45">2024-11-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">UnityShader入门——纹理应用和透明效果渐变纹理最简单的，用一张贴图去实现，给出的贴图应该是渐变的色块
-123float halfLambert = dot(i.worldNormal,lightDir)* 0.5 + 0.5;//漫反射float3 diffue =  _LightColor0.rgb * _Diffse.rgb  * tex2D(_RampTex,float2(halfLambert,halfLambert));
+如上图所示：
 
-渐变纹理按照半兰伯特光照的颜色排序，在 x 轴上渐变
-遮罩纹理对blinn phong高光使用该效果，可以控制高光颜色强度
-局部着色器实现
-123456float3 halfPhongMask = tex2D(_SpecularMask,i.uvMask).r * _SpecularMaskStrength;//提取遮罩贴图并 和强度进行相关  //高光反射  //float3 halfView = normalize(_WorldSpaceCameraPos + _WorldSpaceLightPos0);  float3 halfView = ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/4139c4a.html" title="Unity —— Shader入门，法线贴图">Unity —— Shader入门，法线贴图</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-31T07:15:40.220Z" title="发表于 2024-10-31 15:15:40">2024-10-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">UnityShader入门——法线贴图高度映射，模型空间下的法线映射，切线空间下的法线映射
+activation Track是控制活跃性的，在轨道的指定片段内是有效的，具体使用案例是在播放CG的时候需要将屏幕从人物中移动开，这个时候可以将原本的Playercamera拖拽到Timeline的该轨道上，在指定的片段内才是活跃的
+Animation Track是常规的Animation，需要追踪一个animator，
+audio Track是音效轨道
+Control Track 
+playable Track
+signal Track 事件轨道
 
-贴图纹理和法线之间的转换
+代码控制12345678910111213using UnityEngine.Playables; // ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/90cfb828.html" title="Unity——UI拖拽">Unity——UI拖拽</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-18T02:32:06.572Z" title="发表于 2024-08-18 10:32:06">2024-08-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">UI拖拽实现接口1IBeginDragHandler, IEndDragHandler,IDragHandler
 
-知识：向量的分量就是 向量的点表示图中，按照逗号进行分割数字
-高度映射使用像素的灰度值来表示该位置的深度
-缺点是需要通过一系列的计算来变换为可以使用的法线角度、不利于美术的处理
-模型空间下的法线映射坐标系的原点是模型坐标系的原点
-颜色很多，每个点的向量都有可能不同，最后呈现的结果就是花里胡哨的。
-UV点和模型的每一个顶点都是一一对应的，不方便移动改变，有些高级的特效或者粒子特效需要移动UV贴图来实现。
-制作简单
-一般在3S贴图中可能遇见
-优点
-实现简单，更加直观。计算量少。在纹理的边角部分，缝隙较少，可提供平滑的边界。是因为所有法线都是在同一坐标空间中，可以在边角处通过插值进行平滑变换。
-切线空间下的法线映射
-
-叉乘: 
-向量叉乘是对两个三维空间中的向量进行的一种二元运算，其结果是一个新的向量，这个向量垂直于由原始两个向量所定义的平面。
-对于两个三维向量a(x1, y1, z1)和b(x2, y2, z2)，它们的叉乘c &#x3D; a × b可以表示为：
-c & ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/posts/bbb76467.html" title="Unity —— Shader，常用函数">Unity —— Shader，常用函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-30T08:31:37.679Z" title="发表于 2024-10-30 16:31:37">2024-10-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Unity/">Unity</a></span></div><div class="content">常用函数函数 功能描述
-abs(x) 返回输入参数的绝对值
-acos(x) 反余切函数，输入参数范围为[-1,1]， 返回[0,π]区间的角度值
-all(x) 如果输入参数均不为0，则返回ture； 否则返回flase。&amp;&amp;运算
-any(x) 输入参数只要有其中一个不为0，则返回true。
-asin(x) 反正弦函数,输入参数取值区间为，返回角度值范围为, 
-atan(x) 反正切函数，返回角度值范围为
-atan2(y,x) 计算y&#x2F;x的反正切值。实际上和atan(x)函数功能完全一样，至少输入参数不同。atan(x) &#x3D; atan2(x, float(1))。
-ceil(x) 对输入参数向上取整。例如： ceil(float(1.3)) ，其返回值为2.0
-clamp(x,a,b) 如果x值小于a，则返回a；
-如果x值大于b，返回b；否则，返回x。
-cos(x) 返回弧度x的余弦值。返回值范围为
-cosh(x) 双曲余弦（hyperbolic cosine）函数，计算x的双曲余弦值。
-cross(A,B) 返回两个三元向量的叉积(cross pro ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/categories/Unity/page/2/">2</a><a class="page-number" href="/categories/Unity/page/3/">3</a><a class="extend next" rel="next" href="/categories/Unity/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">mao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/mao1mao2mao3mao4"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/8f055b02.html" title="UnityShader——水效果实现">UnityShader——水效果实现</a><time datetime="2024-11-14T03:57:31.449Z" title="发表于 2024-11-14 11:57:31">2024-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/93e23347.html" title="UnityShader——中级，Shader动画">UnityShader——中级，Shader动画</a><time datetime="2024-11-14T00:52:00.854Z" title="发表于 2024-11-14 08:52:00">2024-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/74dd94d1.html" title="UnityShader——经验">UnityShader——经验</a><time datetime="2024-11-13T09:34:00.502Z" title="发表于 2024-11-13 17:34:00">2024-11-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/987fbb5a.html" title="UnityShader——中级，高级纹理">UnityShader——中级，高级纹理</a><time datetime="2024-11-13T01:15:34.472Z" title="发表于 2024-11-13 09:15:34">2024-11-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/815f1d7.html" title="UnityShader——中级，LightMap">UnityShader——中级，LightMap</a><time datetime="2024-11-12T02:39:23.302Z" title="发表于 2024-11-12 10:39:23">2024-11-12</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+该方法是BeginDrag接口的实现方法，在指定游戏对象被拖拽的时候启用，对于鼠标的位置追踪则可以直接使用 eventData.position 来进行移动，不需要进行一些列转换
+一般被拖动的UI会受到自身所在层级影响，因此在一开始就需要重新设置一下被拖动UI的父对象
+12345678public void OnBeginDrag(PointerEventData eventData)        &#123;            originParent = transform.parent;             this.transform.SetParent(transform.parent.parent.parent);            this.transform.position = eventData.position;            canvasGroup.blocksRaycasts = false;//射线可以穿透         ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/categories/Unity/page/2/">2</a><a class="extend next" rel="next" href="/categories/Unity/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">mao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/mao1mao2mao3mao4"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/8f055b02.html" title="UnityShader——水效果实现">UnityShader——水效果实现</a><time datetime="2024-11-14T03:57:31.449Z" title="发表于 2024-11-14 11:57:31">2024-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/93e23347.html" title="UnityShader——中级，Shader动画">UnityShader——中级，Shader动画</a><time datetime="2024-11-14T00:52:00.854Z" title="发表于 2024-11-14 08:52:00">2024-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/74dd94d1.html" title="UnityShader——经验">UnityShader——经验</a><time datetime="2024-11-13T09:34:00.502Z" title="发表于 2024-11-13 17:34:00">2024-11-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/987fbb5a.html" title="UnityShader——中级，高级纹理">UnityShader——中级，高级纹理</a><time datetime="2024-11-13T01:15:34.472Z" title="发表于 2024-11-13 09:15:34">2024-11-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/815f1d7.html" title="UnityShader——中级，LightMap">UnityShader——中级，LightMap</a><time datetime="2024-11-12T02:39:23.302Z" title="发表于 2024-11-12 10:39:23">2024-11-12</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
     <i class="fas fa-angle-right"></i></a>
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Alogrithm/"><span class="card-category-list-name">Alogrithm</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C++</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/UI%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">UI技术</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity/"><span class="card-category-list-name">Unity</span><span class="card-category-list-count">26</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/UnityShader/"><span class="card-category-list-name">UnityShader</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9B%BE%E5%BD%A2%E6%8E%A5%E5%8F%A3/"><span class="card-category-list-name">图形接口</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E7%A5%9E%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">左神算法</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><span class="card-category-list-name">经验</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 1.15em; color: #999b9e">C#</a> <a href="/tags/AI/" style="font-size: 1.15em; color: #999b9e">AI</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 1.5em; color: #99a9bf">题目</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 1.15em; color: #999b9e">经验</a> <a href="/tags/%E7%BB%84%E4%BB%B6/" style="font-size: 1.2em; color: #999da3">组件</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 1.4em; color: #99a5b6">渲染</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1.3em; color: #99a1ac">动态规划</a> <a href="/tags/string/" style="font-size: 1.1em; color: #999">string</a> <a href="/tags/%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86/" style="font-size: 1.1em; color: #999">语言知识</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">性能优化</a> <a href="/tags/C/" style="font-size: 1.1em; color: #999">C++</a> <a href="/tags/Unity/" style="font-size: 1.45em; color: #99a7ba">Unity</a> <a href="/tags/Unity-UI/" style="font-size: 1.1em; color: #999">Unity UI</a> <a href="/tags/%E8%A7%A3%E6%B3%95%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">解法总结</a> <a href="/tags/github/" style="font-size: 1.1em; color: #999">github</a> <a href="/tags/%E6%9E%9A%E4%B8%BE/" style="font-size: 1.15em; color: #999b9e">枚举</a> <a href="/tags/%E7%89%B9%E6%80%A7/" style="font-size: 1.1em; color: #999">特性</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 1.1em; color: #999">位运算</a> <a href="/tags/alogrithm/" style="font-size: 1.2em; color: #999da3">alogrithm</a> <a href="/tags/Plugins/" style="font-size: 1.1em; color: #999">Plugins</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 1.25em; color: #999fa7">字符串</a> <a href="/tags/OpenGl/" style="font-size: 1.1em; color: #999">OpenGl</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 1.35em; color: #99a3b1">数组</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 1.1em; color: #999">二分查找</a> <a href="/tags/%E6%A0%88/" style="font-size: 1.1em; color: #999">栈</a> <a href="/tags/UI/" style="font-size: 1.1em; color: #999">UI</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">30</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">5</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">67</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-11-16T14:17:21.629Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/background.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By mao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Alogrithm/"><span class="card-category-list-name">Alogrithm</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C++</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/UI%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">UI技术</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity/"><span class="card-category-list-name">Unity</span><span class="card-category-list-count">11</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/UnityShader/"><span class="card-category-list-name">UnityShader</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9B%BE%E5%BD%A2%E6%8E%A5%E5%8F%A3/"><span class="card-category-list-name">图形接口</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A6%E7%A5%9E%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">左神算法</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><span class="card-category-list-name">经验</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E6%A0%88/" style="font-size: 1.1em; color: #999">栈</a> <a href="/tags/alogrithm/" style="font-size: 1.2em; color: #999da3">alogrithm</a> <a href="/tags/C/" style="font-size: 1.1em; color: #999">C++</a> <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" style="font-size: 1.1em; color: #999">二分查找</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 1.5em; color: #99a9bf">题目</a> <a href="/tags/C/" style="font-size: 1.15em; color: #999b9e">C#</a> <a href="/tags/AI/" style="font-size: 1.15em; color: #999b9e">AI</a> <a href="/tags/Plugins/" style="font-size: 1.1em; color: #999">Plugins</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">性能优化</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 1.1em; color: #999">位运算</a> <a href="/tags/github/" style="font-size: 1.1em; color: #999">github</a> <a href="/tags/%E8%A7%A3%E6%B3%95%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">解法总结</a> <a href="/tags/UI/" style="font-size: 1.1em; color: #999">UI</a> <a href="/tags/string/" style="font-size: 1.1em; color: #999">string</a> <a href="/tags/%E7%BB%84%E4%BB%B6/" style="font-size: 1.2em; color: #999da3">组件</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1.3em; color: #99a1ac">动态规划</a> <a href="/tags/Unity/" style="font-size: 1.45em; color: #99a7ba">Unity</a> <a href="/tags/OpenGl/" style="font-size: 1.1em; color: #999">OpenGl</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 1.35em; color: #99a3b1">数组</a> <a href="/tags/%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86/" style="font-size: 1.1em; color: #999">语言知识</a> <a href="/tags/%E6%9E%9A%E4%B8%BE/" style="font-size: 1.15em; color: #999b9e">枚举</a> <a href="/tags/%E7%89%B9%E6%80%A7/" style="font-size: 1.1em; color: #999">特性</a> <a href="/tags/Unity-UI/" style="font-size: 1.1em; color: #999">Unity UI</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 1.25em; color: #999fa7">字符串</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 1.15em; color: #999b9e">经验</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 1.4em; color: #99a5b6">渲染</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">30</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">5</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">67</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-11-16T14:29:50.481Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/background.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By mao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
