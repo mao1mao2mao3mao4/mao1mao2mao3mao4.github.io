@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta name="referrer" content="no-referrer"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>lua语法 | mao的博客</title><meta name="author" content="mao"><meta name="copyright" content="mao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="lua语法 只记录重点内容，还有和编程语言在常规使用上的不同之处 变量类型Lua 变量有三种类型：全局变量、局部变量、表中的域。 Lua 中的变量全是全局变量，哪怕是语句块或是函数里，除非用 local 显式声明为局部变量。 局部变量的作用域为从声明位置开始到所在语句块结束。 变量的默认值均为 nil。 12345678910111213141516171819-- test.lua 文件脚本a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lua语法">
+<meta property="og:url" content="https://mao1mao2mao3mao4.github.io/posts/c0acd869.html">
+<meta property="og:site_name" content="mao的博客">
+<meta property="og:description" content="lua语法 只记录重点内容，还有和编程语言在常规使用上的不同之处 变量类型Lua 变量有三种类型：全局变量、局部变量、表中的域。 Lua 中的变量全是全局变量，哪怕是语句块或是函数里，除非用 local 显式声明为局部变量。 局部变量的作用域为从声明位置开始到所在语句块结束。 变量的默认值均为 nil。 12345678910111213141516171819-- test.lua 文件脚本a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mao1mao2mao3mao4.github.io/img/%E5%A4%B4%E5%83%8F.jpg">
+<meta property="article:published_time" content="2024-12-03T13:08:27.017Z">
+<meta property="article:modified_time" content="2024-12-20T10:22:19.018Z">
+<meta property="article:author" content="mao">
+<meta property="article:tag" content="lua">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mao1mao2mao3mao4.github.io/img/%E5%A4%B4%E5%83%8F.jpg"><link rel="shortcut icon" href="/img/%E5%8E%9F%E7%A5%9E%E7%81%AB.png"><link rel="canonical" href="https://mao1mao2mao3mao4.github.io/posts/c0acd869.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'lua语法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-20 18:22:19'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/background.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="mao的博客"><img class="site-icon" src="/img/%E5%8E%9F%E7%A5%9E%E7%81%AB.png"/><span class="site-name">mao的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/CV/"><i class="fa-fw fas fa-folder-open"></i><span> 简历</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">lua语法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-03T13:08:27.017Z" title="发表于 2024-12-03 21:08:27">2024-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-20T10:22:19.018Z" title="更新于 2024-12-20 18:22:19">2024-12-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="lua语法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="lua"><a href="#lua" class="headerlink" title="lua"></a>lua</h1><p>语法</p>
+<p>只记录重点内容，还有和编程语言在常规使用上的不同之处</p>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>Lua 变量有三种类型：全局变量、局部变量、表中的域。</p>
+<p>Lua 中的变量全是全局变量，哪怕是语句块或是函数里，除非用 local 显式声明为局部变量。</p>
+<p>局部变量的作用域为从声明位置开始到所在语句块结束。</p>
+<p>变量的默认值均为 nil。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- test.lua 文件脚本</span></span><br><span class="line">a = <span class="number">5</span>               <span class="comment">-- 全局变量</span></span><br><span class="line"><span class="keyword">local</span> b = <span class="number">5</span>         <span class="comment">-- 局部变量</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">joke</span><span class="params">()</span></span></span><br><span class="line">    c = <span class="number">5</span>           <span class="comment">-- 全局变量</span></span><br><span class="line">    <span class="keyword">local</span> d = <span class="number">6</span>     <span class="comment">-- 局部变量</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">joke()</span><br><span class="line"><span class="built_in">print</span>(c,d)          <span class="comment">--&gt; 5 nil</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> </span><br><span class="line">    <span class="keyword">local</span> a = <span class="number">6</span>     <span class="comment">-- 局部变量</span></span><br><span class="line">    b = <span class="number">6</span>           <span class="comment">-- 对局部变量重新赋值</span></span><br><span class="line">    <span class="built_in">print</span>(a,b);     <span class="comment">--&gt; 6 6</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a,b)      <span class="comment">--&gt; 5 6</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>应该尽可能的使用局部变量，有两个好处：</strong></p>
+<ul>
+<li><ol>
+<li>避免命名冲突。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>访问局部变量的速度比全局变量更快。</li>
+</ol>
+</li>
+</ul>
+<h2 id="空、NULL，null"><a href="#空、NULL，null" class="headerlink" title="空、NULL，null"></a>空、NULL，null</h2><p>在默认情况下，变量总是认为是全局的。</p>
+<p>全局变量不需要声明，给一个变量赋值后即创建了这个全局变量，访问一个没有初始化的全局变量也不会出错，只不过得到的结果是：<strong>nil</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">print</span>(b)</span><br><span class="line"><span class="literal">nil</span></span><br><span class="line">&gt; b=<span class="number">10</span></span><br><span class="line">&gt; <span class="built_in">print</span>(b)</span><br><span class="line"><span class="number">10</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果想删除一个全局变量，只需要将变量赋值为nil。</p>
+<h3 id="空判断"><a href="#空判断" class="headerlink" title="空判断"></a>空判断</h3><p><strong>nil 作比较时应该加上双引号 “：</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">type</span>(X)</span><br><span class="line"><span class="literal">nil</span></span><br><span class="line">&gt; <span class="built_in">type</span>(X)==<span class="literal">nil</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line">&gt; <span class="built_in">type</span>(X)==<span class="string">&quot;nil&quot;</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>type(X)&#x3D;&#x3D;nil</strong> 结果为 <strong>false</strong> 的原因是 type(X) 实质是返回的 <strong>“nil”</strong> 字符串，是一个 string 类型：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span>(<span class="built_in">type</span>(X))==<span class="built_in">string</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h2><p>boolean 类型只有两个可选值：true（真） 和 false（假），Lua 把 false 和 nil 看作是 false，其他的都为 true，数字 0 也是 true:</p>
+<p>与之不同的是，在编程语言，例如，C++和C#中，0是false</p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p><strong>字符串拼接不使用 加号</strong></p>
+<p>相反，由 两个英文句号替代 </p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">print</span>(<span class="string">&quot;a&quot;</span> .. <span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">ab</span><br><span class="line">&gt; <span class="built_in">print</span>(<span class="number">157</span> .. <span class="number">428</span>)</span><br><span class="line"><span class="number">157428</span></span><br><span class="line">&gt; </span><br></pre></td></tr></table></figure>
+
+<p><strong>加号字符串的运算中有，有着另外的作用</strong></p>
+<p>在对一个数字字符串上进行算术操作时，Lua 会尝试将这个数字字符串转成一个数字</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">print</span>(<span class="string">&quot;2&quot;</span> + <span class="number">6</span>)</span><br><span class="line"><span class="number">8.0</span></span><br><span class="line">&gt; <span class="built_in">print</span>(<span class="string">&quot;2&quot;</span> + <span class="string">&quot;6&quot;</span>)</span><br><span class="line"><span class="number">8.0</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="索引头"><a href="#索引头" class="headerlink" title="索引头"></a>索引头</h2><p>lua做出了一个违背祖宗的决定</p>
+<p>不同于其他语言的数组把 0 作为数组的初始索引，在 Lua 里表的默认初始索引一般以 1 开始。</p>
+<p>不过是默认是，这个是可以自行指定的，</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">array = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i= <span class="number">-2</span>, <span class="number">2</span> <span class="keyword">do</span></span><br><span class="line">   array[i] = i *<span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i = <span class="number">-2</span>,<span class="number">2</span> <span class="keyword">do</span></span><br><span class="line">   <span class="built_in">print</span>(array[i])</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Table是ua中的特殊类型</p>
+<h2 id="方括号调用"><a href="#方括号调用" class="headerlink" title="方括号调用"></a>方括号调用</h2><p>table 不会固定长度大小，有新数据添加时 table 长度会自动增长，没初始的 table 都是 nil。</p>
+<p>对 table 的索引使用方括号 []。Lua 也提供了 . 操作。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t[i]</span><br><span class="line">t.i                 <span class="comment">-- 当索引为字符串类型时的一种简化写法</span></span><br><span class="line">gettable_event(t,i) <span class="comment">-- 采用索引访问本质上是一个类似这样的函数调用</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h1><table>
+<thead>
+<tr>
+<th><a target="_blank" rel="noopener" href="https://www.runoob.com/lua/lua-break-statement.html">break 语句</a></th>
+<th>退出当前循环或语句，并开始脚本执行紧接着的语句。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://www.runoob.com/lua/lua-goto.html">goto 语句</a></td>
+<td>将程序的控制点转移到一个标签处。</td>
+</tr>
+</tbody></table>
+<p>遗憾的是lua没有continue操作</p>
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>设置继承的关键在setmetatable和self.__index &#x3D; self中</p>
+<p>Table需要被声明后才能使用</p>
+<p>同时对于方法的调用，需要通过实例加上英文的冒号 : ，来实现</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Meta class</span></span><br><span class="line">Shape = &#123;area = <span class="number">0</span>&#125;</span><br><span class="line"><span class="comment">-- 基础类方法 new</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Shape:new</span> <span class="params">(side)</span></span></span><br><span class="line">    o = &#123;&#125;</span><br><span class="line">    <span class="comment">--对于继承的调用来说，首先使用的就是父类的中的方法和属性，因此o在前，将self设置为元表就是让在基础table找不属性和方法的时再去调用元组中的内容</span></span><br><span class="line">    <span class="built_in">setmetatable</span>(o, <span class="built_in">self</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 这一行设置了 Shape 表的 __index 元方法。这意味着，当Lua查找一个键（属性或方法）在一个对象中不存在时，它会使用 Shape 表本身作为查找的起点</span></span><br><span class="line">    <span class="comment">--即从本社找不到后指定去元表中查找</span></span><br><span class="line">    <span class="built_in">self</span>.<span class="built_in">__index</span> = <span class="built_in">self</span></span><br><span class="line">    side = side <span class="keyword">or</span> <span class="number">0</span></span><br><span class="line">    <span class="built_in">self</span>.area = side*side;</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">-- 基础类方法 printArea</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Shape:printArea</span> <span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;面积为 &quot;</span>,<span class="built_in">self</span>.area)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">myShapeIns = Shape:new(<span class="number">3</span>)</span><br><span class="line">myShapeIns:printArea()</span><br><span class="line"></span><br><span class="line"><span class="comment">--table需要首先被声明后才能使用</span></span><br><span class="line">Square = Shape:new()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Square:new</span><span class="params">(side)</span></span></span><br><span class="line">    o = Shape:new(side)</span><br><span class="line">    <span class="built_in">setmetatable</span>(o,<span class="built_in">self</span>)</span><br><span class="line">    <span class="built_in">self</span>.<span class="built_in">__index</span> = <span class="built_in">self</span></span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> mySquareIns =  Square:new(<span class="number">4</span>)</span><br><span class="line">mySquareIns:printArea()</span><br></pre></td></tr></table></figure>
+
+<h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><p>模块类似于一个封装库，从 Lua 5.1 开始，Lua 加入了标准的模块管理机制，可以把一些公用的代码放在一个文件里，以 API 接口的形式在其他地方调用，有利于代码的重用和降低代码耦合度。</p>
+<p>Lua 的模块是由变量、函数等已知元素组成的 table，因此创建一个模块很简单，就是创建一个 table，然后把需要导出的常量、函数放入其中，最后返回这个 table 就行。以下为创建自定义模块 module.lua，文件代码格式如下：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 文件名为 module.lua</span></span><br><span class="line"><span class="comment">-- 定义一个名为 module 的模块</span></span><br><span class="line"><span class="built_in">module</span> = &#123;&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 定义一个常量</span></span><br><span class="line"><span class="built_in">module</span>.constant = <span class="string">&quot;这是一个常量&quot;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 定义一个函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">module.func1</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">io</span>.<span class="built_in">write</span>(<span class="string">&quot;这是一个公有函数！\n&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">func2</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;这是一个私有函数！&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">module.func3</span><span class="params">()</span></span></span><br><span class="line">    func2()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> <span class="built_in">module</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义测试"><a href="#自定义测试" class="headerlink" title="自定义测试"></a>自定义测试</h2><p>名字叫做module的lua文件</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span> = &#123;&#125;</span><br><span class="line"></span><br><span class="line">const = <span class="string">&quot;测试内容&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">module.GetData</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">return</span> const</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="built_in">module</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module1 =  <span class="built_in">require</span>(<span class="string">&quot;module&quot;</span>) <span class="comment">--可以自定义名称</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(module1.GetData())</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://mao1mao2mao3mao4.github.io">mao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://mao1mao2mao3mao4.github.io/posts/c0acd869.html">https://mao1mao2mao3mao4.github.io/posts/c0acd869.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mao1mao2mao3mao4.github.io" target="_blank">mao的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/lua/">lua</a></div><div class="post_share"><div class="social-share" data-image="/img/%E5%A4%B4%E5%83%8F.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/62d8d43f.html" title="Unity——热更"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Unity——热更</div></div></a></div><div class="next-post pull-right"><a href="/posts/134f9acd.html" title="lua——Unity配合Rider使用xlua驱动lua"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">lua——Unity配合Rider使用xlua驱动lua</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/134f9acd.html" title="lua——Unity配合Rider使用xlua驱动lua"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-03</div><div class="title">lua——Unity配合Rider使用xlua驱动lua</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">mao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/mao1mao2mao3mao4"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lua"><span class="toc-number">1.</span> <span class="toc-text">lua</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BA%E3%80%81NULL%EF%BC%8Cnull"><span class="toc-number">2.2.</span> <span class="toc-text">空、NULL，null</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%88%A4%E6%96%AD"><span class="toc-number">2.2.1.</span> <span class="toc-text">空判断</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boolean"><span class="toc-number">2.3.</span> <span class="toc-text">boolean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-number">2.4.</span> <span class="toc-text">String</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">3.</span> <span class="toc-text">索引</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%A4%B4"><span class="toc-number">3.1.</span> <span class="toc-text">索引头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%8B%AC%E5%8F%B7%E8%B0%83%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">方括号调用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-number">4.</span> <span class="toc-text">循环</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.</span> <span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-number">6.</span> <span class="toc-text">模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%8B%E8%AF%95"><span class="toc-number">6.1.</span> <span class="toc-text">自定义测试</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/5a9886b9.html" title="Unity —— 2D，glow效果">Unity —— 2D，glow效果</a><time datetime="2024-12-20T09:50:13.340Z" title="发表于 2024-12-20 17:50:13">2024-12-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/4abb1517.html" title="Unity —— 2D渲染光照迁移">Unity —— 2D渲染光照迁移</a><time datetime="2024-12-20T08:18:37.785Z" title="发表于 2024-12-20 16:18:37">2024-12-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/32419e40.html" title="Pixiv的作品id使用">Pixiv的作品id使用</a><time datetime="2024-12-11T13:54:25.550Z" title="发表于 2024-12-11 21:54:25">2024-12-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/62d8d43f.html" title="Unity——热更">Unity——热更</a><time datetime="2024-12-10T12:27:24.637Z" title="发表于 2024-12-10 20:27:24">2024-12-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/c0acd869.html" title="lua语法">lua语法</a><time datetime="2024-12-03T13:08:27.017Z" title="发表于 2024-12-03 21:08:27">2024-12-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/background.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By mao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
